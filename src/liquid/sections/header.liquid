@@ -15,10 +15,10 @@
       <ul class="header__nav-list">
         {% comment %} parent links {% endcomment %}
         {% for link in section.settings.navigation.links %}
-          <li>
-            <a href="{{ link.url }}">{{ link.title }}</a>
+          <li class="header__nav-item">
+            <a class="header__nav-anchor" href="{{ link.url }}">{{ link.title }}</a>
             {% if link.links != blank %}
-              <ul>
+              <ul class="header__sub">
                 {% comment %} child links {% endcomment %}
                 {% for child_link in link.links %}
                   <li>
@@ -33,7 +33,7 @@
                             <a href="{{ grandchild_link.url }}">
                               {{ grandchild_link.title }}
                             </a>
-                          </li>x
+                          </li>
                         {% endfor %}
                       </ul>
                     {% endif %}
@@ -47,6 +47,23 @@
     </div>
   </div>
 </div>
+<div class="header__nav-overlay"></div>
+
+<script>
+  // switching classess
+  document
+    .querySelector('.header__hamburger-block')
+    .addEventListener('click', (e) => {
+      document.querySelector('.header').classList.toggle('nav-active')
+    })
+
+    // remove class overlay
+    document
+    .querySelector('.header__nav-overlay')
+    .addEventListener('click', () => {
+      document.querySelector('.header').classList.remove('nav-active')
+    })
+</script>
 
 
 {% schema %}
