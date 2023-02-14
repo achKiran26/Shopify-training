@@ -1,1 +1,78 @@
-<h1>header Welcome</h1>
+<div class="header__container container">
+  <div class="header__nav">
+    <div class="header__logo-block">
+      <a href="/" class="header__logo">
+        <img src={{ section.settings.logo | img_url:'master'}} alt=""></a>
+    </div>
+    {% comment %} hamburger {% endcomment %}
+    <button class="header__hamburger-block">
+      <span class="header__hamburger-bar"></span>
+      <span class="header__hamburger-bar"></span>
+      <span class="header__hamburger-bar"></span>
+    </button>
+    {% comment %} end {% endcomment %}
+    <div class="header__links">
+      <ul class="header__nav-list">
+        {% comment %} parent links {% endcomment %}
+        {% for link in section.settings.navigation.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            {% if link.links != blank %}
+              <ul>
+                {% comment %} child links {% endcomment %}
+                {% for child_link in link.links %}
+                  <li>
+                    <a href="{{ child_link.url }}">
+                      {{ child_link.title }}</a>
+
+                    {% if child_link.links != blank %}
+                      <ul>
+                        {% comment %} grand child links {% endcomment %}
+                        {% for grandchild_link in child_link.links %}
+                          <li>
+                            <a href="{{ grandchild_link.url }}">
+                              {{ grandchild_link.title }}
+                            </a>
+                          </li>x
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "header",
+    "tag": "header",
+    "class": "header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "logo_width"
+      }, {
+        "type": "range",
+        "id": "logo_width",
+        "label": "logo width",
+        "default": 100,
+        "min": 20,
+        "max": 300,
+        "step": 5
+      }, {
+        "type": "link_list",
+        "id": "navigation",
+        "label": "Navigation menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}

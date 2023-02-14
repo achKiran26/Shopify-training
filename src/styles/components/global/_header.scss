@@ -1,21 +1,48 @@
-@import 'header-login';
-@import 'navigation';
-@import 'mobile-navigation';
-@import 'header-search';
+$fadeOff: left 0s 0.4s, opacity 0.4s;
+$fadeOn: left 0s, opacity 0.4s;
+$component: ".header";
 
-.site-header {
-  @include padding(1rem, null, 1rem, null);
-
-  background-color: white;
-
-  .row {
-    justify-content: space-between;
-    flex-wrap: nowrap;
-  }
+#{$component}__logoBlock {
+  width: 100px;
 }
-.template-index {
-  .site-header {
-    position: absolute;
+
+#{$component}__nav {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+}
+
+#{$component}__links {
+  width: 90%;
+}
+
+#{$component}__navList {
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  @include above("tablet-large") {
     width: 100%;
   }
+}
+
+#{$component}__hamburgerBlock {
+  display: block;
+}
+
+#{$component}__hamburger-bar {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  display: block;
+}
+
+button,
+input,
+select {
+  outline: none;
+  border: none;
+  background: transparent;
 }
