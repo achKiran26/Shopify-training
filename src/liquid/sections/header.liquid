@@ -1,8 +1,10 @@
-<div class="header__container container">
-  <div class="header__nav">
+<div class="{% if section.settings.checkbox == true %} header {% endif %} header__container container">
+  <dn class="header__nav">
     <div class="header__logo-block">
       <a href="/" class="header__logo">
-        <img src={{ section.settings.logo | img_url:'master'}} alt=""></a>
+        {% if section.settings.logo != blank %}
+          <img src={{ section.settings.logo | img_url:'master'}} alt=""></a>
+      {% endif %}
     </div>
     {% comment %} hamburger {% endcomment %}
     <button class="header__hamburger-block">
@@ -49,6 +51,7 @@
 </div>
 <div class="header__nav-overlay"></div>
 
+
 <script>
   // switching classess
   document
@@ -89,6 +92,11 @@
         "id": "navigation",
         "label": "Navigation menu",
         "default": "main-menu"
+      }, {
+        "type": "checkbox",
+        "id": "checkbox",
+        "label": "enable sticky header",
+        "default": true
       }
     ]
   }

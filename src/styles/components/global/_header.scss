@@ -2,6 +2,16 @@ $fadeOff: left 0s 0.4s, opacity 0.4s;
 $fadeOn: left 0s, opacity 0.4s;
 $component: ".header";
 
+#{$component} {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+#{$component}__container {
+  background: burlywood;
+}
+
 #{$component}__logo-block {
   width: 100px;
 }
@@ -121,6 +131,8 @@ $component: ".header";
 #{$component}__sub {
   border: 1px solid;
   position: relative;
+  z-index: 10;
+  background-color: darkgray;
   @include above("tablet-large") {
     top: 0;
     opacity: 0;
