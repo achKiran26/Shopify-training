@@ -1,10 +1,11 @@
 <div class="{% if section.settings.checkbox == true %} header {% endif %} header__container container">
-  <dn class="header__nav">
+  <div class="header__nav">
     <div class="header__logo-block">
       <a href="/" class="header__logo">
         {% if section.settings.logo != blank %}
-          <img src={{ section.settings.logo | img_url:'master'}} alt=""></a>
-      {% endif %}
+          <img src={{ section.settings.logo | img_url:'master'}} alt="">
+        {% endif %}
+      </a>
     </div>
     {% comment %} hamburger {% endcomment %}
     <button class="header__hamburger-block">
