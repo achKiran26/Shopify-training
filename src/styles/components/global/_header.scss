@@ -130,23 +130,22 @@ $component: ".header";
 
 #{$component}__sub {
   border: 1px solid;
-  position: relative;
+  position: fixed;
   z-index: 10;
   background-color: darkgray;
   @include above("tablet-large") {
-    top: 0;
-    opacity: 0;
+    display: none;
+    z-index:99999;
     transition: $fadeOff;
   }
 
-  #{$component}__nav-anchor:hover + &,
-  &:hover {
-    @include above("tablet-large") {
-      opacity: 1;
-      transition: $fadeOn;
+  #{$component}__nav-anchor:hover +&,&:hover {
+    @include above("tablet-large"){
+      display: block;
     }
   }
 }
+
 
 #{$component}__nav-anchor {
   display: block;
