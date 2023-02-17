@@ -1,9 +1,10 @@
 <div class="{% if section.settings.checkbox == true %} header {% endif %} header__container container">
-  <dn class="header__nav">
+  <div class="header__nav">
     <div class="header__logo-block">
-      <a href="/" class="header__logo">
-        {% if section.settings.logo != blank %}
-          <img src={{ section.settings.logo | img_url:'master'}} alt=""></a>
+      {% if section.settings.logo != blank %}
+        <a href="/" class="header__logo">
+          <img src={{ section.settings.logo | img_url:'master'}} alt="">
+        </a>
       {% endif %}
     </div>
     {% comment %} hamburger {% endcomment %}
@@ -50,24 +51,6 @@
   </div>
 </div>
 <div class="header__nav-overlay"></div>
-
-
-<script>
-  // switching classess
-  document
-    .querySelector('.header__hamburger-block')
-    .addEventListener('click', (e) => {
-      document.querySelector('.header').classList.toggle('nav-active')
-    })
-
-    // remove class overlay
-    document
-    .querySelector('.header__nav-overlay')
-    .addEventListener('click', () => {
-      document.querySelector('.header').classList.remove('nav-active')
-    })
-</script>
-
 
 {% schema %}
   {
