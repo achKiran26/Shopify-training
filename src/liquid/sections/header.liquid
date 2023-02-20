@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="{% if section.settings.checkbox == true %} header {% endif %} header__container container">
   <div class="header__nav">
     <div class="header__logo-block">
@@ -6,14 +7,17 @@
           <img src={{ section.settings.logo | img_url:'master'}} alt="">
         {% endif %}
       </a>
+=======
+<div class="{% if section.settings.checkbox == true %}header__sticky {% endif %}header__container container">
+  <div class="header__nav">
+    <div class="header__logo-block">
+      {% if section.settings.logo != blank %}
+        <a href="/" class="header__logo">
+          <img src={{ section.settings.logo | img_url:'master'}} alt="">
+        </a>
+      {% endif %}
+>>>>>>> feature/header
     </div>
-    {% comment %} hamburger {% endcomment %}
-    <button class="header__hamburger-block">
-      <span class="header__hamburger-bar"></span>
-      <span class="header__hamburger-bar"></span>
-      <span class="header__hamburger-bar"></span>
-    </button>
-    {% comment %} end {% endcomment %}
     <div class="header__links">
       <ul class="header__nav-list">
         {% comment %} parent links {% endcomment %}
@@ -48,26 +52,17 @@
         {% endfor %}
       </ul>
     </div>
+    {% comment %} hamburger {% endcomment %}
+    <button class="header__hamburger-block">
+      <span class="header__hamburger-bar"></span>
+      <span class="header__hamburger-bar"></span>
+      <span class="header__hamburger-bar"></span>
+    </button>
+    {% comment %} end {% endcomment %}
+
   </div>
 </div>
 <div class="header__nav-overlay"></div>
-
-
-<script>
-  // switching classess
-  document
-    .querySelector('.header__hamburger-block')
-    .addEventListener('click', (e) => {
-      document.querySelector('.header').classList.toggle('nav-active')
-    })
-
-    // remove class overlay
-    document
-    .querySelector('.header__nav-overlay')
-    .addEventListener('click', () => {
-      document.querySelector('.header').classList.remove('nav-active')
-    })
-</script>
 
 
 {% schema %}
@@ -97,7 +92,7 @@
         "type": "checkbox",
         "id": "checkbox",
         "label": "enable sticky header",
-        "default": true
+        "default": false
       }
     ]
   }
