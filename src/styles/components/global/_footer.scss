@@ -29,6 +29,11 @@ $component: ".footer";
   justify-content: space-between;
 }
 
+#{$component}__nav-anchor{
+  color: purple;
+}
+
+
 #{$component}__nav-list {
   display: flex;
   justify-content: space-around;
