@@ -150,6 +150,7 @@ $component: ".header";
   #{$component}__nav-anchor:hover +&,&:hover {
     @include above("tablet-large"){
       display: block;
+      color: black;
     }
   }
 }
@@ -158,7 +159,7 @@ $component: ".header";
 #{$component}__nav-anchor {
   display: block;
   padding: 10px;
-  color: black;
+  color: purple;
 }
 
 button,
