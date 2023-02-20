@@ -15,11 +15,14 @@ import 'Styles/layout/theme.scss';
 import mobileNavigation from '../components/mobile-navigation';
 import headerSearch from '../components/header-search';
 import ajaxSearch from '../components/ajax-search';
+import header from '../components/header'
 
 mobileNavigation()
 headerSearch()
 ajaxSearch()
+header()
 
 window.headerSearch.init();
 window.mobileNavigation.init();
 window.ajaxSearch.init();
+window.header.init();

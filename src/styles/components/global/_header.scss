@@ -1,21 +1,171 @@
-@import 'header-login';
-@import 'navigation';
-@import 'mobile-navigation';
-@import 'header-search';
+$fadeOff: left 0s 0.4s, opacity 0.4s;
+$fadeOn: left 0s, opacity 0.4s;
+$component: ".header";
 
-.site-header {
-  @include padding(1rem, null, 1rem, null);
+#{$component}__sticky {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+}
 
-  background-color: white;
+#{$component}__container {
+  background: burlywood;
+}
 
-  .row {
-    justify-content: space-between;
-    flex-wrap: nowrap;
+#{$component}__logo-block {
+  width: 100px;
+}
+
+#{$component}__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+
+  @include above("tablet-large") {
+    align-items: center;
   }
 }
-.template-index {
-  .site-header {
-    position: absolute;
-    width: 100%;
+
+#{$component}__links {
+  @include above("tablet-large") {
+    height: 50px;
+    width: 50%;
   }
+}
+
+#{$component}__nav-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: auto;
+  background: white;
+  width: 90%;
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  padding: 0 20px;
+  transform: translateX(-100%);
+  transition: 0.4s transform;
+
+  @include above("tablet-large") {
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 40px;
+    width: auto;
+    max-width: none;
+    height: auto;
+    overflow: auto;
+    background: transparent;
+    transform: none;
+    padding: 0;
+  }
+
+  .nav-active & {
+    transform: none;
+  }
+
+  li,
+  ul {
+    list-style: none;
+
+    margin: 0;
+  }
+  ul {
+    padding: 10px 5px;
+  }
+
+  
+}
+
+#{$component}__hamburger-block {
+  display: block;
+
+  @include above("tablet-large") {
+    display: none;
+  }
+}
+
+#{$component}__hamburger-bar {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  display: block;
+}
+
+#{$component}__nav-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9;
+  opacity: 0;
+  transition: $fadeOff;
+
+  @include above("tablet-large") {
+    display: none;
+  }
+
+  .nav-active & {
+    left: 0;
+    opacity: 1;
+    transition: $fadeOn;
+    @include above("tablet-large") {
+      display: none;
+    }
+  }
+}
+
+#{$component}__nav-item {
+  border-bottom: 1px solid black;
+  @include above("tablet-large") {
+    border: none;
+    position: relative;
+  }
+}
+
+#{$component}__sub {
+  border: 1px solid;
+  position: relative;
+  z-index: 10;
+  background-color: darkgray;
+  
+  @include above("tablet-large") {
+    position: fixed;
+    display: none;
+    z-index:99999;
+    transition: $fadeOff;
+  }
+
+  #{$component}__nav-anchor:hover +&,&:hover {
+    @include above("tablet-large"){
+      display: block;
+      color: black;
+    }
+  }
+}
+
+
+#{$component}__nav-anchor {
+  display: block;
+  padding: 10px;
+  color: purple;
+}
+
+button,
+input,
+select {
+  outline: none;
+  border: none;
+  background: transparent;
 }
