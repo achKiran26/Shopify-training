@@ -2,6 +2,8 @@ $component: ".footer";
 
 #{$component}__container {
   background: burlywood;
+  bottom: 0;
+  width: 100%;
 }
 
 #{$component}__nav {
