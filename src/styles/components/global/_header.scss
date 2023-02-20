@@ -2,10 +2,11 @@ $fadeOff: left 0s 0.4s, opacity 0.4s;
 $fadeOn: left 0s, opacity 0.4s;
 $component: ".header";
 
-#{$component} {
-  position: sticky;
+#{$component}__sticky {
+  position: fixed;
   top: 0;
   z-index: 999;
+  width: 100%;
 }
 
 #{$component}__container {
@@ -30,6 +31,7 @@ $component: ".header";
 #{$component}__links {
   @include above("tablet-large") {
     height: 50px;
+    width: 50%;
   }
 }
 
@@ -51,6 +53,21 @@ $component: ".header";
   transform: translateX(-100%);
   transition: 0.4s transform;
 
+  @include above("tablet-large") {
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 40px;
+    width: auto;
+    max-width: none;
+    height: auto;
+    overflow: auto;
+    background: transparent;
+    transform: none;
+    padding: 0;
+  }
+
   .nav-active & {
     transform: none;
   }
@@ -65,18 +82,7 @@ $component: ".header";
     padding: 10px 5px;
   }
 
-  @include above("tablet-large") {
-    position: relative;
-    align-items: center;
-    flex-direction: row;
-    gap: 40px;
-    width: auto;
-    max-width: none;
-    height: auto;
-    overflow: auto;
-    background: transparent;
-    transform: none;
-  }
+  
 }
 
 #{$component}__hamburger-block {
@@ -130,10 +136,12 @@ $component: ".header";
 
 #{$component}__sub {
   border: 1px solid;
-  position: fixed;
+  position: relative;
   z-index: 10;
   background-color: darkgray;
+  
   @include above("tablet-large") {
+    position: fixed;
     display: none;
     z-index:99999;
     transition: $fadeOff;
