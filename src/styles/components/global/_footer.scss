@@ -1,70 +1,40 @@
-.site-footer {
-  @include padding(2rem, null, 2rem, null);
-  @include margin(4rem, null, null, null);
+$component: ".footer";
 
-  border-top: 0.1rem solid color('grey');
-  background-color: white;
-
-  .row {
-    align-items: baseline;
-  }
+#{$component}__container {
+  background: burlywood;
 }
 
-.terms {
-  text-align: center;
-  font-size: 0.9rem;
-
-  @include above('tablet-large') {
-    text-align: right;
-  }
-
-  .txt {
-    margin-bottom: 0.5rem;
-  }
+#{$component}__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.footer-nav {
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-
-  @include above('tablet-large') {
-    justify-content: right;
-  }
-  li {
-    display: inline-block;
-  }
-  a {
-    font-size: 0.9rem;
-    color: color('text');
-    text-decoration: none;
-
-    &:hover {
-      color: color('text');
-      text-decoration: none;
-    }
-  }
+#{$component}__logo-block {
+  width: 100px;
 }
 
-.text-holder {
-  font-size: 14px;
-  line-height: 1.5;
-  max-width: 40rem;
-  text-align: center;
-  margin: 0 auto 1rem;
-
-  @include above('tablet-large') {
-    text-align: left;
+#{$component}__links {
+  width: 100%;
+  ul {
+    list-style: none;
+    padding: 0;
     margin: 0;
   }
 }
 
-.copyrights {
-  @include margin(0.5rem, null, null, null);
+#{$component}__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  text-align: center;
+#{$component}__nav-anchor{
+  color: purple;
+}
 
-  @include above('tablet-large') {
-    text-align: right;
-  }
+
+#{$component}__nav-list {
+  display: flex;
+  justify-content: space-around;
 }
