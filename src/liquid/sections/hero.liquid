@@ -1,6 +1,8 @@
-<div class="hero__container">
+<div class="container hero__container">
   <div class="hero__title">
-    <h1>{{ section.settings.richtext-box }}</h1>
+    {% if section.settings.richtext-box != blank %}
+      <h1>{{ section.settings.richtext-box }}</h1>
+    {% endif %}
   </div>
   <div class="hero__image-block">
     {% if section.settings.hero-background_image != blank %}
