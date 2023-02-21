@@ -1,3 +1,4 @@
+header li
 <div class="{% if section.settings.checkbox == true %}header__sticky {% endif %}header__container container">
   <div class="header__nav">
     <div class="header__logo-block">
@@ -12,21 +13,34 @@
       {% if section.settings.collection %}
         {% assign collection = collections[section.settings.collection] %}
         <a class="header__nav-anchor">{{ collection.title }}</a>
-        <div class="header__collection-info header__sub">
+        <div class="header__sub">
           {% for product in collection.products %}
             {% comment %} using forloop to filter first prod {% endcomment %}
             {% if forloop.index <= 1 %}
               <div class=" header__product-card">
                 <div class="header__product-image header__child-block">
-                  <img src="{{ collection.products.first | img_url: 'master' }}" alt="">
+                  {% if collection.products.first != blank %}
+                    <a href="{{ product.url }}">
+                      <img
+                        class="header__product-image"
+                        src="{{ collection.products.first | img_url: 'large'}}"
+                        alt="" />
+                    </a>
+                  {% endif %}
                 </div>
                 <div class="header__product-info header__child-block">
-                  <p>{{ product.title }}</p>
-                  <p>{{ product.price | money }}</p>
+                  {% if product.title != blank %}
+                    <p>Product name:
+                      <b>{{ product.title }}</b>
+                    </p>
+                  {% endif %}
+                  {% if product.title != blank %}
+                    <p>Product price:
+                      <b>{{ product.price | money }}</b>
+                    {% endif %}
+                  </p>
                 </div>
-
               </div>
-
             {% endif %}
           {% endfor %}
         {% endif %}
