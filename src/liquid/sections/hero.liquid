@@ -1,3 +1,4 @@
+hero li
 <div class="container hero__container">
   <div class="hero__title">
     {% if section.settings.richtext-box != blank %}
@@ -14,19 +15,18 @@
       Jean-Michel Lemieux said that Shopify is composed of different key technologies that, when combined, give you a solid foundation on which to build your business. These are the building blocks of their retail operating system. <br>
       Now, here are the key technologies…<br>
       1. An Open Internet<br>
-      The Shopify CTO talked about how commerce needs to have roads that are accessible so that products and knowledge can continue to flow through the borders. In some parts of the world, and on some parts of the internet, these roads are in danger, as people, states, and companies are trying to put up walls and borders. But Shopify’s digital highway has been built on the promise of an open internet.<br>
-      The internet was built on open standards like DNS, BGP, TCP/IP, and HTTP. The following are a few of Shopify’s open internet initiatives.</p>
+      The Shopify CTO talked about how commerce needs to have roads that are accessible so that products and knowledge can continue to flow through the borders. In some parts of the world, and on some parts of the internet, these roads are in danger, as people, states, and companies are trying to put up walls and borders. But Shopify's digital highway has been built on the promise of an open internet.<br>
+      The internet was built on open standards like DNS, BGP, TCP/IP, and HTTP. The following are a few of Shopify's open internet initiatives.</p>
   </div>
   <div class="hero__video-block">
-
-    <video
-      width="100%"
-      height="100%"
-      controls>
-      <source src="{{ section.settings.hero-background_video.url }}" type="video/mp4" />
-    </video>
-
-
+    {% if section.settings.hero-background_video != blank %}
+      <video
+        width="100%"
+        height="100%"
+        controls>
+        <source src={{ section.settings.hero-background_video.sources[1].url }} type="video/mp4" />
+      </video>
+    {% endif %}
   </div>
 </div>
 
