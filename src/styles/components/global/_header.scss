@@ -207,11 +207,12 @@ $component: ".header";
   z-index: 99;
   top: 0;
   right: 0;
-  background-color: white;
+  background-color: gray;
   overflow-x: hidden;
   padding-top: 10px;
   height: 100vh;
   overflow: scroll;
+  color: white;
 
   a{
     padding-left: 20px;
@@ -249,6 +250,27 @@ $component: ".header";
     text-align: center;
     width: 100%;
   }
+}
+
+.cart__item{
+  padding: 10px;
+}
+
+.cart__item-image{
+  img{
+    width: 100%;
+  }
+}
+
+.cart__item-info{
+  display: flex;
+  justify-content: space-between
+}
+
+.cart__item-product{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
 
 p{
