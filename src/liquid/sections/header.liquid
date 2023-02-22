@@ -7,6 +7,42 @@
         </a>
       {% endif %}
     </div>
+    {% comment %} fetched single collection from admin {% endcomment %}
+    <div class="header__collection-block">
+      {% if section.settings.collection %}
+        {% assign item = collections[section.settings.collection] %}
+        <a class="header__nav-anchor">{{ item.title }}</a>
+        <div class="header__sub">
+          {% for prodItem in item.products %}
+            {% comment %} using forloop to filter first prod {% endcomment %}
+            {% if forloop.index == 2 %}
+              <div class=" header__product-card">
+                <div class="header__product-image header__child-block">
+                  <a href="{{ prodItem.url }}">
+                    <img
+                      class="header__product-image"
+                      src={{ prodItem.images[0] | img_url: 'large' }}
+                      alt="{{ prodItem.images[0].alt}}" />
+                  </a>
+                </div>
+                <div class="header__product-info header__child-block">
+                  {% if prodItem.title != blank %}
+                    <p>Product name:
+                      <b>{{ prodItem.title }}</b>
+                    </p>
+                  {% endif %}
+                  {% if prodItem.title != blank %}
+                    <p>Product price:
+                      <b>{{ prodItem.price | money }}</b>
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
     <div class="header__links">
       <ul class="header__nav-list">
         {% comment %} parent links {% endcomment %}
@@ -17,12 +53,12 @@
               <ul class="header__sub">
                 {% comment %} child links {% endcomment %}
                 {% for child_link in link.links %}
-                  <li>
-                    <a href="{{ child_link.url }}">
+                  <li class="header__child-block">
+                    <a class="header__child-list" href="{{ child_link.url }}">
                       {{ child_link.title }}</a>
 
                     {% if child_link.links != blank %}
-                      <ul>
+                      <ul class="header__grandchild-list">
                         {% comment %} grand child links {% endcomment %}
                         {% for grandchild_link in child_link.links %}
                           <li>
@@ -41,6 +77,19 @@
         {% endfor %}
       </ul>
     </div>
+    <div class="header__cart js-cartToggle">
+      <div class="header__cart-bubble">
+        <span>{{ cart.item_count }}</span>
+        {{ }}</div>
+      <img src={{ section.settings.cart | img_url:'master'}} alt="">
+    </div>
+    <div class="header__cart-drawer">
+      <div class="header__cart__head">
+        <a href="#" class="header__cart-close">x</a>
+        <p>Cart Items {{ cart.item_count }}</p>
+      </div>
+
+    </div>
     {% comment %} hamburger {% endcomment %}
     <button class="header__hamburger-block">
       <span class="header__hamburger-bar"></span>
@@ -53,7 +102,6 @@
 </div>
 <div class="header__nav-overlay"></div>
 
-
 {% schema %}
   {
     "name": "header",
@@ -64,7 +112,13 @@
         "type": "image_picker",
         "id": "logo",
         "label": "logo_width"
-      }, {
+      },
+      {
+        "type": "image_picker",
+        "id": "cart",
+        "label": "cart image"
+      },
+      {
         "type": "range",
         "id": "logo_width",
         "label": "logo width",
@@ -72,7 +126,8 @@
         "min": 20,
         "max": 300,
         "step": 5
-      }, {
+      },
+      {
         "type": "link_list",
         "id": "navigation",
         "label": "Navigation menu",
@@ -82,6 +137,10 @@
         "id": "checkbox",
         "label": "enable sticky header",
         "default": false
+      }, {
+        "type": "collection",
+        "id": "collection",
+        "label": "add collection"
       }
     ]
   }
