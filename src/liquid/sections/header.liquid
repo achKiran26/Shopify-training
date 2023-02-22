@@ -77,6 +77,19 @@
         {% endfor %}
       </ul>
     </div>
+    <div class="header__cart js-cartToggle">
+      <div class="header__cart-bubble">
+        <span>{{ cart.item_count }}</span>
+        {{ }}</div>
+      <img src={{ section.settings.cart | img_url:'master'}} alt="">
+    </div>
+    <div class="header__cart-drawer">
+      <div class="header__cart__head">
+        <a href="#" class="header__cart-close">x</a>
+        <p>Cart Items {{ cart.item_count }}</p>
+      </div>
+
+    </div>
     {% comment %} hamburger {% endcomment %}
     <button class="header__hamburger-block">
       <span class="header__hamburger-bar"></span>
@@ -89,7 +102,6 @@
 </div>
 <div class="header__nav-overlay"></div>
 
-
 {% schema %}
   {
     "name": "header",
@@ -100,6 +112,11 @@
         "type": "image_picker",
         "id": "logo",
         "label": "logo_width"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart",
+        "label": "cart image"
       },
       {
         "type": "range",
@@ -115,8 +132,7 @@
         "id": "navigation",
         "label": "Navigation menu",
         "default": "main-menu"
-      },
-      {
+      }, {
         "type": "checkbox",
         "id": "checkbox",
         "label": "enable sticky header",

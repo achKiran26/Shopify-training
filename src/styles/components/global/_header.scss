@@ -20,6 +20,7 @@ $component: ".header";
 #{$component}__nav {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid;
 
@@ -30,8 +31,8 @@ $component: ".header";
 
 #{$component}__links {
   @include above("tablet-large") {
-    height: 50px;
-    width: 50%;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -124,6 +125,7 @@ $component: ".header";
     left: 0;
     opacity: 1;
     transition: $fadeOn;
+    
     @include above("tablet-large") {
       display: none;
     }
@@ -194,6 +196,64 @@ $component: ".header";
   color: purple;
 }
 
+#{$component}__cart{
+  cursor: pointer;
+  
+}
+
+#{$component}__cart-drawer{
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 10px;
+  height: 100vh;
+  overflow: scroll;
+
+  a{
+    padding-left: 20px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+}
+
+#{$component}__cart-bubble{
+  position: relative;
+  bottom: 5px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  height: 15px;
+  width: 15px;
+  float: right;
+  padding: 8px;
+
+  
+  span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+}
+
+#{$component}__cart__head{
+  display: flex;
+  flex-direction: row;
+
+  p{
+    text-align: center;
+    width: 100%;
+  }
+}
+
+p{
+  margin: 0;
+}
 button,
 input,
 select {
