@@ -1,0 +1,19 @@
+<div class="product__container ">
+  <form method="post" action="/cart/add">
+    <div class="product__head">
+      <img src="{{ product.images[0] | img_url: 'medium' }}" alt="">
+    </div>
+    <p>{{ product.title }}</p>
+
+    <input
+      type="hidden"
+      name="id"
+      value="{{ product.variants.first.id }}" />
+    <input
+      min="1"
+      type="number"
+      id="quantity"
+      value="1" />
+    <input type="submit" value="Add to cart" />
+  </form>
+</div>
