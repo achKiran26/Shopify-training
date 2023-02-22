@@ -1,4 +1,3 @@
-header li
 <div class="{% if section.settings.checkbox == true %}header__sticky {% endif %}header__container container">
   <div class="header__nav">
     <div class="header__logo-block">
@@ -11,32 +10,30 @@ header li
     {% comment %} fetched single collection from admin {% endcomment %}
     <div class="header__collection-block">
       {% if section.settings.collection %}
-        {% assign collection = collections[section.settings.collection] %}
-        <a class="header__nav-anchor">{{ collection.title }}</a>
+        {% assign item = collections[section.settings.collection] %}
+        <a class="header__nav-anchor">{{ item.title }}</a>
         <div class="header__sub">
-          {% for product in collection.products %}
+          {% for prodItem in item.products %}
             {% comment %} using forloop to filter first prod {% endcomment %}
-            {% if forloop.index <= 1 %}
+            {% if forloop.index == 2 %}
               <div class=" header__product-card">
                 <div class="header__product-image header__child-block">
-                  {% if collection.products.first != blank %}
-                    <a href="{{ product.url }}">
-                      <img
-                        class="header__product-image"
-                        src="{{ collection.products.first | img_url: 'large'}}"
-                        alt="" />
-                    </a>
-                  {% endif %}
+                  <a href="{{ prodItem.url }}">
+                    <img
+                      class="header__product-image"
+                      src={{ prodItem.images[0] | img_url: 'large' }}
+                      alt="{{ prodItem.images[0].alt}}" />
+                  </a>
                 </div>
                 <div class="header__product-info header__child-block">
-                  {% if product.title != blank %}
+                  {% if prodItem.title != blank %}
                     <p>Product name:
-                      <b>{{ product.title }}</b>
+                      <b>{{ prodItem.title }}</b>
                     </p>
                   {% endif %}
-                  {% if product.title != blank %}
+                  {% if prodItem.title != blank %}
                     <p>Product price:
-                      <b>{{ product.price | money }}</b>
+                      <b>{{ prodItem.price | money }}</b>
                     {% endif %}
                   </p>
                 </div>
