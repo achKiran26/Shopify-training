@@ -3,3 +3,19 @@ $component: ".product";
 #{$component}__container{
   margin-top: 100px;
 }
+
+#{$component}__description{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#{$component}__select-option{
+  border: 1px solid;
+}
+
+#{$component}__submit-block{
+  button{
+    margin-bottom: 20px;
+    background-color: burlywood;
+  }
+}

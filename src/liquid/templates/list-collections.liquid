@@ -1,0 +1,9 @@
+{% comment %} organise the collection in one page {% endcomment %}
+{% for collection in collections %}
+  <div class="">
+    <a href="{{ collection.url }}">
+      <h2>{{ collection.title }}</h2>
+      </p>
+    </a>
+  </div>
+{% endfor %}
