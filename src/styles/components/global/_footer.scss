@@ -2,12 +2,11 @@ $component: ".footer";
 
 #{$component}__container {
   background: burlywood;
-  bottom: 0;
   width: 100%;
-  position: fixed;
+  height: auto;
+  position: relative;
   left: 0;
   bottom: 0;
-  width: 100%;
   text-align: center;
 }
 
