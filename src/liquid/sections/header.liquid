@@ -80,13 +80,43 @@
     <div class="header__cart js-cartToggle">
       <div class="header__cart-bubble">
         <span>{{ cart.item_count }}</span>
-        {{ }}</div>
+      </div>
       <img src={{ section.settings.cart | img_url:'master'}} alt="">
     </div>
     <div class="header__cart-drawer">
       <div class="header__cart__head">
         <a href="#" class="header__cart-close">x</a>
         <p>Cart Items {{ cart.item_count }}</p>
+      </div>
+      {% comment %} cart drawer items {% endcomment %}
+      {% for item in cart.items %}
+        <div class="cart__item" data-key="{{ item.key }}">
+          <div class="cart__item-info">
+            <div class="cart__item-image">
+              <a href="{{ item.url }}">
+                <img src="{{ item.image | img_url:'small' }}" alt="" />
+              </a>
+            </div>
+            <div class="cart__item-product">
+                {% if item.title != blank %}
+                  <p>{{ item.title }}</p>
+                {% endif %}
+                {% if item.title != blank %}
+                  <p>{{ item.price | money }}</p>
+                {% endif %}
+                {% for variant in product.variants %}
+                  {% if item.title != blank %}
+                    <p>{{ variant.title }}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            
+              {% comment %} <div class="cart-item-remove">
+                <a href="{{ item.url_to_remove  }}"><p>remove</p></a>
+              </div> {% endcomment %}
+            </div>
+          </div>
+        {% endfor %}
       </div>
 
     </div>

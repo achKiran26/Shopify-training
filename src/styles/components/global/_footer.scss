@@ -4,6 +4,11 @@ $component: ".footer";
   background: burlywood;
   bottom: 0;
   width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 #{$component}__nav {
