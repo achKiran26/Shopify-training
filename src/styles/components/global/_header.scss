@@ -252,26 +252,7 @@ $component: ".header";
   }
 }
 
-.cart__item{
-  padding: 10px;
-}
 
-.cart__item-image{
-  img{
-    width: 100%;
-  }
-}
-
-.cart__item-info{
-  display: flex;
-  justify-content: space-between
-}
-
-.cart__item-product{
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-}
 
 p{
   margin: 0;

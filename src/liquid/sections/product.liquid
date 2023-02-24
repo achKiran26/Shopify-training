@@ -1,19 +1,38 @@
-<div class="product__container ">
-  <form method="post" action="/cart/add">
-    <div class="product__head">
-      <img src="{{ product.images[0] | img_url: 'medium' }}" alt="">
-    </div>
-    <p>{{ product.title }}</p>
+<div class="container product__container">
+  <div class="product__block">
+    {% comment %} creating form for product to add in cart {% endcomment %}
+    {% form 'product', product %}
+      <div class="product__head">
+        <img src="{{ product.images[0] | img_url: 'large' }}" alt="">
+      </div>
+      <p>{{ product.title }}</p>
+      <div class="product__description">
+        {{ product.description }}
+      </div>
+      <label for="">Varinat</label>
+      <select
+        class="product__select-option"
+        name=""
+        id="">
+        {% comment %} loop for looping through the variants {% endcomment %}
+        {% for variant in product.variants %}
+          <option value="">
+            {{ variant.title }}</option>
+        {% endfor %}
+      </select>
 
-    <input
-      type="hidden"
-      name="id"
-      value="{{ product.variants.first.id }}" />
-    <input
-      min="1"
-      type="number"
-      id="quantity"
-      value="1" />
-    <input type="submit" value="Add to cart" />
-  </form>
+      <div class="product__submit-block">
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.variants.first.id }}" />
+        <input
+          min="1"
+          type="number"
+          id="quantity"
+          value="1" />
+        <button type="submit" value="">Add to cart</button>
+      </div>
+    {% endform %}
+  </div>
 </div>
