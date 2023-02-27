@@ -1,33 +1,48 @@
-{% assign _settingsCollection = section.settings.collection %}
+{% assign _section = section.settings %}
+{% assign _settingsCollection = _section.collection %}
 
-<div class="{% if section.settings.checkbox == true %}header__sticky {% endif %}header__container container">
-  <div class="header__nav">
-    <div class="header__logo-block">
-      {% if section.settings.logo != blank %}
-        <a href="/" class="header__logo">
-          <img src={{ section.settings.logo | img_url:'master'}} alt="">
+<div
+  class="{% if _section.checkbox == true %}header__sticky {% endif %}header__container container">
+  <div
+    class="header__nav">
+    <div
+      class="header__logo-block">
+      {% if _section.logo != blank %}
+        <a
+          href="/"
+          class="header__logo">
+          <img
+            src={{ _section.logo | img_url:'master'}}
+            alt="">
         </a>
       {% endif %}
     </div>
     {% comment %} fetched single collection from admin {% endcomment %}
-    <div class="header__collection-block">
+    <div
+      class="header__collection-block">
       {% if _settingsCollection %}
         {% assign item = collections[_settingsCollection] %}
-        <a class="header__nav-anchor">{{ item.title }}</a>
-        <div class="header__sub">
+        <a
+          class="header__nav-anchor">{{ item.title }}</a>
+        <div
+          class="header__sub">
           {% for prodItem in item.products %}
             {% comment %} using forloop to filter first prod {% endcomment %}
             {% if forloop.index == 2 %}
-              <div class=" header__product-card">
-                <div class="header__product-image header__child-block">
-                  <a href="{{ prodItem.url }}">
+              <div
+                class=" header__product-card">
+                <div
+                  class="header__product-image header__child-block">
+                  <a
+                    href="{{ prodItem.url }}">
                     <img
                       class="header__product-image"
                       src={{ prodItem.images[0] | img_url: 'large' }}
                       alt="{{ prodItem.images[0].alt}}" />
                   </a>
                 </div>
-                <div class="header__product-info header__child-block">
+                <div
+                  class="header__product-info header__child-block">
                   {% if prodItem.title != blank %}
                     <p>Product name:
                       <b>{{ prodItem.title }}</b>
@@ -46,107 +61,41 @@
       </div>
     </div>
     {% comment %} fetching all products {% endcomment %}
-    <div class="header__all-products">
-      <a href="{{ collections['all-collections'].url }}">All collection</a>
+    <div
+      class="header__all-products">
+      <a
+        href="{{ collections['all-collections'].url }}">All collection</a>
     </div>
     {% comment %} fetch single product link {% endcomment %}
-    <div class="header__all">
+    <div
+      class="header__all">
       {% assign product = all_products['watering-can'] %}
       {% if product != blank %}
-        <a href="{{ product.url }}">{{ product.title }}</p>
+        <a
+          href="{{ product.url }}">{{ product.title }}</p>
       {% else %}
         <p>No matchin product found</p>
       {% endif %}
 
     </div>
-    {% comment %} fetching the navigation links {% endcomment %}
-    <div class="header__links">
-      <ul class="header__nav-list">
-        {% comment %} parent links {% endcomment %}
-        {% for link in section.settings.navigation.links %}
-          <li class="header__nav-item">
-            <a class="header__nav-anchor" href="{{ link.url }}">{{ link.title }}</a>
-            {% if link.links != blank %}
-              <ul class="header__sub">
-                {% comment %} child links {% endcomment %}
-                {% for child_link in link.links %}
-                  <li class="header__child-block">
-                    <a class="header__child-list" href="{{ child_link.url }}">
-                      {{ child_link.title }}</a>
-
-                    {% if child_link.links != blank %}
-                      <ul class="header__grandchild-list">
-                        {% comment %} grand child links {% endcomment %}
-                        {% for grandchild_link in child_link.links %}
-                          <li>
-                            <a href="{{ grandchild_link.url }}">
-                              {{ grandchild_link.title }}
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="cart__container">
-      <div
-        class="header__cart js-cartToggle">
-        <div class="header__cart-bubble">
-          <span>{{ cart.item_count }}</span>
-        </div>
-        <img src={{ section.settings.cart | img_url:'master'}} alt="">
-      </div>
-      <div class="header__cart-drawer">
-        <div class="header__cart__head">
-          <a href="#" class="header__cart-close">x</a>
-          <p>Cart Items {{ cart.item_count }}</p>
-        </div>
-        {% comment %} cart drawer items {% endcomment %}
-        {% for item in cart.items %}
-          <div class="cart__item" data-key="{{ item.key }}">
-            <div class="cart__item-info">
-              <div class="cart__item-image">
-                <a href="{{ item.url }}">
-                  <img src="{{ item.image | img_url:'small' }}" alt="" />
-                </a>
-              </div>
-              <div class="cart__item-product">
-                {% if item.title != blank %}
-                  <p>{{ item.title }}</p>
-                {% endif %}
-                {% if item.title != blank %}
-                  <p>{{ item.price | money }}</p>
-                {% endif %}
-
-              </div>
-              <div class="cart-item-remove">
-                <a href="{{ item.url_to_remove  }}">
-                  <p>remove</p>
-                </a>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-
-    </div>
-    {% comment %} hamburger {% endcomment %}
-    <button class="header__hamburger-block">
-      <span class="header__hamburger-bar"></span>
-      <span class="header__hamburger-bar"></span>
-      <span class="header__hamburger-bar"></span>
+    {% render 'navigation' %}
+    {% render 'cart-item' %}
+    {% comment %} hamburger start {% endcomment %}
+    <button
+      class="header__hamburger-block">
+      <span
+        class="header__hamburger-bar"></span>
+      <span
+        class="header__hamburger-bar"></span>
+      <span
+        class="header__hamburger-bar"></span>
     </button>
     {% comment %} end {% endcomment %}
 
   </div>
 </div>
-<div class="header__nav-overlay"></div>
+<div
+  class="header__nav-overlay"></div>
 
 {% schema %}
   {

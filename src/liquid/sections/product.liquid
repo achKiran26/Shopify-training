@@ -1,35 +1,31 @@
 <div class="container product__container">
-  
-    {% comment %} creating product to add in cart {% endcomment %}
-  <div class="product__block">
-    <div class="product__image">
-      <img src="{{ product.images[0] | img_url: 'master' }}" alt="{{ product.images[0] }}">
+  {% comment %} creating product to add in cart {% endcomment %}
+  <div
+    class="product__block">
+    <div
+      class="product__image">
+      {% for image in product.images %}
+        <img
+          loading="lazy"
+          src="{{ image | image_url: width:'400x200' }}"
+          alt="{{ image.alt }}" />
+      {% endfor %}
     </div>
-    <div class="product__details">
-      <div class="product__head">
+    <div
+      class="product__details">
+      <div
+        class="product__head">
         <h3>{{ product.title }}</h3>
         <p>{{ product.description }}</p>
-        <p class="product__price">Price: <b>{{ product.price | money }}</b></p> 
+        <p
+          class="product__price">Price:
+          <b>{{ product.price | money }}</b>
+        </p>
       </div>
-      <div class="product__variant">
-        <form action="/cart/add" method="post" >
-          <select name="id">
-          {% for variant in product.variants %}
-          {% if variant.available %}
-          <option value="{{ variant.id }}">{{ variant.title }}</option>
-          {% else %}
-          <option disabled="disabled">{{ variant.title }} - Sold Out</option>
-          {% endif %}
-          {% endfor %}
-          </select><br>
-          <button class="btn" type="submit" value="Buy now" class="variant-button">Add to cart</button>
-        </form>
+      <div
+        class="product__variant">
+        {% render 'cart-function' %}
       </div>
     </div>
-   
-  </div>   
-</div>
-   
-  
   </div>
 </div>
