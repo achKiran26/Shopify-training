@@ -19,3 +19,32 @@ $component: ".product";
     background-color: burlywood;
   }
 }
+
+#{$component}__block{
+  display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px;
+}
+
+#{$component}__price{
+    margin-top: 20px;
+}
+
+#{$component}__image{
+  width: 100%;
+}
+
+#{$component}__variant{
+  margin: 20px 0;
+
+  select{
+    border: 1px solid;
+  }
+
+  .btn{
+    background-color: burlywood;
+    padding: 5px;
+    margin-top: 20px;
+  }
+}
+

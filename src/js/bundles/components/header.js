@@ -1,30 +1,30 @@
 /* eslint-disable */
 export const header = () => {
-    const header = document.querySelector(".header__hamburger-block");
-    const overlay = document.querySelector(".header__nav-overlay");
-    const openCart = document.querySelector('.js-cartToggle')
-    const sideDrawer = document.querySelector('.header__cart-drawer')
-    const cartClose = document.querySelector('.header__cart-close')
-  
-    // switching classess
-    header.addEventListener('click', (e) => {
-        document.querySelector('.header').classList.toggle('nav-active')
-      })
-    // remove class overlay
-    overlay.addEventListener('click', (e) => {
-        document.querySelector('.header').classList.remove('nav-active')
-      })
+  const navBurgerButton = document.querySelector(".header__hamburger-block");
+  const overlayDiv = document.querySelector(".header__nav-overlay");
+  const openCart = document.querySelector('.js-cartToggle')
+  const sideDrawer = document.querySelector('.header__cart-drawer')
+  const closeCart = document.querySelector('.header__cart-close')
+  const headerSelector = document.querySelector('.header')
+  const activeNav = 'nav-active'
 
-    openCart.addEventListener('click', (e) => {
-      // console.log('click', e.target)
-      sideDrawer.style.width = "30%"
-    })
+  // switching classess
+  navBurgerButton.addEventListener('click', (e) => {
+    headerSelector.classList.toggle(activeNav)
+  })
 
-    cartClose.addEventListener('click', (e) => {
-      sideDrawer.style.width = "0"
-    })
+  // remove class overlay
+  overlayDiv.addEventListener('click', (e) => {
+    headerSelector.classList.remove(activeNav)
+  })
+
+  openCart.addEventListener('click', (e) => {
+    sideDrawer.style.width = "30%"
+  })
+
+  closeCart.addEventListener('click', (e) => {
+    sideDrawer.style.width = "0"
+  })
 }
-
-
 
 header()
