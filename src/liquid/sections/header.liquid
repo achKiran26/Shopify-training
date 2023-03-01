@@ -1,142 +1,140 @@
 {% assign _section = section.settings %}
 {% assign _settingsCollection = _section.collection %}
-
+{% assign navCollection = _section.navigation.links %}
 <div
-  class="{% if _section.checkbox == true %}header__sticky {% endif %}header__container container">
-  <div
-    class="header__nav">
-    <div
-      class="header__logo-block">
-      {% if _section.logo != blank %}
-        <a
-          href="/"
-          class="header__logo">
-          <img
-            src={{ _section.logo | img_url:'master'}}
-            alt="">
-        </a>
-      {% endif %}
-    </div>
-    {% comment %} fetched single collection from admin {% endcomment %}
-    <div
-      class="header__collection-block">
-      {% if _settingsCollection %}
-        {% assign item = collections[_settingsCollection] %}
-        <a
-          class="header__nav-anchor">{{ item.title }}</a>
-        <div
-          class="header__sub">
-          {% for prodItem in item.products %}
+   class="{% if _section.checkbox == true %}header__sticky {% endif %}header__container container">
+   <div
+      class="header__nav">
+      <div
+         class="header__logo-block">
+         {% if _section.logo != blank %}
+         <a
+            href="/"
+            class="header__logo">
+         <img
+         src={{ _section.logo | img_url:'master'}}
+         alt="">
+         </a>
+         {% endif %}
+      </div>
+      {% comment %} fetched single collection from admin {% endcomment %}
+      <div
+         class="header__collection-block">
+         {% if _settingsCollection %}
+         {% assign item = collections[_settingsCollection] %}
+         <a
+            class="header__nav-anchor">{{ item.title }}</a>
+         <div
+            class="header__sub">
+            {% for prodItem in item.products %}
             {% comment %} using forloop to filter first prod {% endcomment %}
             {% if forloop.index == 2 %}
-              <div
-                class=" header__product-card">
-                <div
+            <div
+               class=" header__product-card">
+               <div
                   class="header__product-image header__child-block">
                   <a
-                    href="{{ prodItem.url }}">
-                    <img
-                      class="header__product-image"
-                      src={{ prodItem.images[0] | img_url: 'large' }}
-                      alt="{{ prodItem.images[0].alt}}" />
+                     href="{{ prodItem.url }}">
+                  <img
+                  class="header__product-image"
+                  src={{ prodItem.images[0] | img_url: 'large' }}
+                  alt="{{ prodItem.images[0].alt}}" />
                   </a>
-                </div>
-                <div
+               </div>
+               <div
                   class="header__product-info header__child-block">
                   {% if prodItem.title != blank %}
-                    <p>Product name:
-                      <b>{{ prodItem.title }}</b>
-                    </p>
+                  <p>Product name:
+                     <b>{{ prodItem.title }}</b>
+                  </p>
                   {% endif %}
                   {% if prodItem.title != blank %}
-                    <p>Product price:
-                      <b>{{ prodItem.price | money }}</b>
-                    {% endif %}
+                  <p>Product price:
+                     <b>{{ prodItem.price | money }}</b>
+                     {% endif %}
                   </p>
-                </div>
-              </div>
+               </div>
+            </div>
             {% endif %}
-          {% endfor %}
-        {% endif %}
+            {% endfor %}
+            {% endif %}
+         </div>
       </div>
-    </div>
-    {% comment %} fetching all products {% endcomment %}
-    <div
-      class="header__all-products">
-      <a
-        href="{{ collections['all-collections'].url }}">All collection</a>
-    </div>
-    {% comment %} fetch single product link {% endcomment %}
-    <div
-      class="header__all">
-      {% assign product = all_products['watering-can'] %}
-      {% if product != blank %}
-        <a
-          href="{{ product.url }}">{{ product.title }}</p>
-      {% else %}
-        <p>No matchin product found</p>
-      {% endif %}
-
-    </div>
-    {% render 'navigation' %}
-    {% render 'cart-item' %}
-    {% comment %} hamburger start {% endcomment %}
-    <button
-      class="header__hamburger-block">
+      {% comment %} fetching all products {% endcomment %}
+      <div
+         class="header__all-products">
+         <a
+            href="{{ collections['all-collections'].url }}">All collection</a>
+      </div>
+      {% comment %} fetch single product link {% endcomment %}
+      <div
+         class="header__all">
+         {% assign product = all_products['watering-can'] %}
+         {% if product != blank %}
+         <a
+            href="{{ product.url }}">{{ product.title }}</p></a>
+         {% else %}
+         <p>No matchin product found</p>
+         {% endif %}
+      </div>
+      
+      {% render 'navigation', navLinks: navCollection %}
+      {% render 'cart-item' %}
+      {% comment %} hamburger start {% endcomment %}
+      <button
+         class="header__hamburger-block">
       <span
-        class="header__hamburger-bar"></span>
+         class="header__hamburger-bar"></span>
       <span
-        class="header__hamburger-bar"></span>
+         class="header__hamburger-bar"></span>
       <span
-        class="header__hamburger-bar"></span>
-    </button>
-    {% comment %} end {% endcomment %}
-
-  </div>
+         class="header__hamburger-bar"></span>
+      </button>
+      {% comment %} end {% endcomment %}
+   </div>
 </div>
 <div
-  class="header__nav-overlay"></div>
-
+   class="header__nav-overlay"></div>
 {% schema %}
-  {
-    "name": "header",
-    "tag": "header",
-    "class": "header",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "logo_width"
-      },
-      {
-        "type": "image_picker",
-        "id": "cart",
-        "label": "cart image"
-      },
-      {
-        "type": "range",
-        "id": "logo_width",
-        "label": "logo width",
-        "default": 100,
-        "min": 20,
-        "max": 300,
-        "step": 5
-      },
-      {
-        "type": "link_list",
-        "id": "navigation",
-        "label": "Navigation menu",
-        "default": "main-menu"
-      }, {
-        "type": "checkbox",
-        "id": "checkbox",
-        "label": "enable sticky header",
-        "default": false
-      }, {
-        "type": "collection",
-        "id": "collection",
-        "label": "add collection"
-      }
-    ]
-  }
+{
+"name": "header",
+"tag": "header",
+"class": "header",
+"settings": [
+{
+"type": "image_picker",
+"id": "logo",
+"label": "logo_width"
+},
+{
+"type": "image_picker",
+"id": "cart",
+"label": "cart image"
+},
+{
+"type": "range",
+"id": "logo_width",
+"label": "logo width",
+"default": 100,
+"min": 20,
+"max": 300,
+"step": 5
+},
+{
+"type": "link_list",
+"id": "navigation",
+"label": "Navigation menu",
+"default": "main-menu"
+}, {
+"type": "checkbox",
+"id": "checkbox",
+"label": "enable sticky header",
+"default": false
+}, {
+"type": "collection",
+"id": "collection",
+"label": "add collection"
+}
+]
+}
 {% endschema %}

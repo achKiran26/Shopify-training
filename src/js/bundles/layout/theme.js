@@ -25,4 +25,4 @@ header()
 window.headerSearch.init();
 window.mobileNavigation.init();
 window.ajaxSearch.init();
-window.header.init();
+// window.header.init();

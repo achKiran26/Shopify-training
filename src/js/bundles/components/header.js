@@ -5,18 +5,20 @@ export const header = () => {
   const openCart = document.querySelector('.js-cartToggle')
   const sideDrawer = document.querySelector('.header__cart-drawer')
   const closeCart = document.querySelector('.header__cart-close')
+  const headerSelector = document.querySelector('.header')
+  const activeNav = 'nav-active'
 
   // switching classess
   navBurgerButton.addEventListener('click', (e) => {
-      document.querySelector('.header').classList.toggle('nav-active')
-    })
+    headerSelector.classList.toggle(activeNav)
+  })
+
   // remove class overlay
   overlayDiv.addEventListener('click', (e) => {
-      document.querySelector('.header').classList.remove('nav-active')
-    })
+    headerSelector.classList.remove(activeNav)
+  })
 
   openCart.addEventListener('click', (e) => {
-    // console.log('click', e.target)
     sideDrawer.style.width = "30%"
   })
 
@@ -24,7 +26,5 @@ export const header = () => {
     sideDrawer.style.width = "0"
   })
 }
-
-
 
 header()

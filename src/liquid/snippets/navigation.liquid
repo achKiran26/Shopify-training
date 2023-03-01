@@ -1,23 +1,16 @@
 {% comment %} fetching the navigation links {% endcomment %}
-<div
-  class="header__links">
+<div class="header__links">
   <ul class="header__nav-list">
     {% comment %} parent links {% endcomment %}
-    {% for link in section.settings.navigation.links %}
-      <li
-        class="header__nav-item">
-        <a
-          class="header__nav-anchor"
-          href="{{ link.url }}">{{ link.title }}</a>
+    {% for link in navLinks %}
+      <li class="header__nav-item">
+        <a class="header__nav-anchor" href="{{ link.url }}">{{ link.title }}</a>
         {% if link.links != blank %}
           <ul class="header__sub">
             {% comment %} child links {% endcomment %}
             {% for child_link in link.links %}
-              <li
-                class="header__child-block">
-                <a
-                  class="header__child-list"
-                  href="{{ child_link.url }}">
+              <li class="header__child-block">
+                <a class="header__child-list" href="{{ child_link.url }}">
                   {{ child_link.title }}</a>
 
                 {% if child_link.links != blank %}
@@ -25,8 +18,7 @@
                     {% comment %} grand child links {% endcomment %}
                     {% for grandchild_link in child_link.links %}
                       <li>
-                        <a
-                          href="{{ grandchild_link.url }}">
+                        <a href="{{ grandchild_link.url }}">
                           {{ grandchild_link.title }}
                         </a>
                       </li>

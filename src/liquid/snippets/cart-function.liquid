@@ -1,15 +1,10 @@
-<form
-  action="/cart/add"
-  method="post">
-  <select
-    name="id">
+<form action="/cart/add" method="post">
+  <select name="id">
     {% for variant in product.variants %}
       {% if variant.available %}
-        <option
-          value="{{ variant.id }}">{{ variant.title }}</option>
+        <option value="{{ variant.id }}">{{ variant.title }}</option>
       {% else %}
-        <option
-          disabled="disabled">{{ variant.title }}Sold Out</option>
+        <option disabled="disabled">{{ variant.title }}Sold Out</option>
       {% endif %}
     {% endfor %}
   </select><br>

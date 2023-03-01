@@ -1,9 +1,7 @@
 <div class="container product__container">
   {% comment %} creating product to add in cart {% endcomment %}
-  <div
-    class="product__block">
-    <div
-      class="product__image">
+  <div class="product__block">
+    <div class="product__image">
       {% for image in product.images %}
         <img
           loading="lazy"
@@ -11,19 +9,15 @@
           alt="{{ image.alt }}" />
       {% endfor %}
     </div>
-    <div
-      class="product__details">
-      <div
-        class="product__head">
+    <div class="product__details">
+      <div class="product__head">
         <h3>{{ product.title }}</h3>
         <p>{{ product.description }}</p>
-        <p
-          class="product__price">Price:
+        <p class="product__price">Price:
           <b>{{ product.price | money }}</b>
         </p>
       </div>
-      <div
-        class="product__variant">
+      <div class="product__variant">
         {% render 'cart-function' %}
       </div>
     </div>
