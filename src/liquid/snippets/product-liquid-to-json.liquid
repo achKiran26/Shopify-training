@@ -1,0 +1,24 @@
+<h2>Liquid</h2>
+<h2>{{ product.handle }}</h2> 
+{{ product.option2 }}
+
+<script type="text/javascript">
+ const productData =
+    `
+       {
+        "handle": "{{ product.handle }}",
+        "url": "{{ product.url }}",
+        "price": "{{ product.price | money }}",
+        "varinatsTitles": [
+           { 
+            "{{ product.option1 }}", 
+           
+            }
+        ]
+        }
+    `
+
+    console.log(JSON.parse(productData))
+
+    window.productData.handle = "{{ productData.handle | json }}"
+</script>
