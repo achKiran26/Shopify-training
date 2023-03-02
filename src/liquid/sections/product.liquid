@@ -1,4 +1,5 @@
 <div class="container product__container">
+  {% render 'product-liquid-to-json', product %}
   {% comment %} creating product to add in cart {% endcomment %}
   <div class="product__block">
     <div class="product__image">
@@ -18,7 +19,7 @@
         </p>
       </div>
       <div class="product__variant">
-        {% render 'cart-function' %}
+        {% render 'cart-function', cart: cart %}
       </div>
     </div>
   </div>

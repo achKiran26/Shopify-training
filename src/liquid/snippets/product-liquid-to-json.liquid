@@ -1,0 +1,19 @@
+<h2>Liquid</h2>
+
+<script type="text/javascript">
+
+ const productData =
+ {
+    "handle": "{{ product.handle }}",
+    "url": "{{ product.url }}",
+    "price": "{{ product.price | money }}",
+    "variantsTitles": [
+        {% for prodItem in product.variants %} 
+        {  
+            "variantTitle":{{ prodItem.title | json }},        
+        } ,
+    {% endfor %}
+    ]
+}
+    window.productData = productData
+</script>

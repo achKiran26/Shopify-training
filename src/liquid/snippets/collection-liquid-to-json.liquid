@@ -1,0 +1,15 @@
+<h2>Liquid</h2>
+
+<script>
+  window.collectionHandle = "{{ collection.handle }}"
+  window.collectionId = "{{ collection.id }}"
+  window.collectionUrl = "{{ collection.url }}"
+  window.numberOfProducts = "{{ collection.products_count }}"
+  window.collectionTags = [
+    {% for tag in collection.tags %}
+      "{{ tag }}"{% if forloop.last != true %},{% endif %}
+    {% endfor %}
+  ]
+  window.collectionTagsJson = {{ collection.tags | json }}
+
+</script>
