@@ -8,6 +8,8 @@ $component: ".footer";
   left: 0;
   bottom: 0;
   text-align: center;
+  position:fixed;
+  bottom:0;
 }
 
 #{$component}__nav {

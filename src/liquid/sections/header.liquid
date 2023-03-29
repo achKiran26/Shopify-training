@@ -1,48 +1,32 @@
 {% assign _section = section.settings %}
 {% assign _settingsCollection = _section.collection %}
 {% assign navCollection = _section.navigation.links %}
-<div
-   class="{% if _section.checkbox == true %}header__sticky {% endif %}header__container container">
-   <div
-      class="header__nav">
-      <div
-         class="header__logo-block">
+
+<div class="{% if _section.checkbox == true %}header__sticky {% endif %}header__container container">
+   <div class="header__nav">
+      <div class="header__logo-block">
          {% if _section.logo != blank %}
-         <a
-            href="/"
-            class="header__logo">
-         <img
-         src={{ _section.logo | img_url:'master'}}
-         alt="">
+         <a href="/" class="header__logo">
+            <img src={{ _section.logo | img_url:'master'}}alt="">
          </a>
          {% endif %}
       </div>
       {% comment %} fetched single collection from admin {% endcomment %}
-      <div
-         class="header__collection-block">
+      <div class="header__collection-block">
          {% if _settingsCollection %}
          {% assign item = collections[_settingsCollection] %}
-         <a
-            class="header__nav-anchor">{{ item.title }}</a>
-         <div
-            class="header__sub">
+         <a class="header__nav-anchor">{{ item.title }}</a>
+         <div class="header__sub">
             {% for prodItem in item.products %}
             {% comment %} using forloop to filter first prod {% endcomment %}
             {% if forloop.index == 2 %}
-            <div
-               class=" header__product-card">
-               <div
-                  class="header__product-image header__child-block">
-                  <a
-                     href="{{ prodItem.url }}">
-                  <img
-                  class="header__product-image"
-                  src={{ prodItem.images[0] | img_url: 'large' }}
-                  alt="{{ prodItem.images[0].alt}}" />
+            <div class=" header__product-card">
+               <div class="header__product-image header__child-block">
+                  <a href="{{ prodItem.url }}">
+                     <img class="header__product-image" src={{ prodItem.images[0] | img_url: 'large' }} alt="{{ prodItem.images[0].alt}}" />
                   </a>
                </div>
-               <div
-                  class="header__product-info header__child-block">
+               <div class="header__product-info header__child-block">
                   {% if prodItem.title != blank %}
                   <p>Product name:
                      <b>{{ prodItem.title }}</b>
@@ -63,18 +47,15 @@
       {% comment %} fetching all products {% endcomment %}
       <div
          class="header__all-products">
-         <a
-            href="{{ collections['all-collections'].url }}">All collection</a>
+         <a href="{{ collections['all-collections'].url }}">All collection</a>
       </div>
       {% comment %} fetch single product link {% endcomment %}
-      <div
-         class="header__all">
+      <div class="header__all">
          {% assign product = all_products['watering-can'] %}
          {% if product != blank %}
-         <a
-            href="{{ product.url }}">{{ product.title }}</p></a>
+         <a href="{{ product.url }}">{{ product.title }}</p></a>
          {% else %}
-         <p>No matchin product found</p>
+            <p>No matchin product found</p>
          {% endif %}
       </div>
       

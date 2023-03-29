@@ -1,0 +1,61 @@
+.dom__container{
+    width: 80%;
+    height: 400px;
+    background: #E3E3E3;
+    border: 1px solid;
+    margin: 70px auto 0;
+    padding: 40px;
+}
+
+.dom__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dom__divider{
+    border-left: 1px solid;
+}
+
+.dom__inputBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    margin-top: 20px;
+
+    span{
+        display: flex;
+        flex-direction: column;
+    }    
+}
+
+.inputResult{
+    background: white;
+    width: 300px;
+    height: 50px;
+    padding: 0 20px;
+
+    @include below('tablet-large'){
+        width: auto;   
+    }
+}
+
+.dom__outputBlock{
+    span{
+        display: flex;
+        flex-direction: column;
+    }
+
+    label{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    h5{
+        text-align: center;
+        padding: 15px 0;
+    }
+}
