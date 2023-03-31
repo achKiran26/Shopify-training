@@ -1,3 +1,4 @@
+{% comment %} add {% endcomment %}
 <div class="dom__container">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
@@ -12,17 +13,128 @@
         <label for="">Number interger</label>
         <input class="inputResult js-value2" type="number">
       </span>
-      <div class="dom__button-container">
-        <button class=" js-submit-add">Add</button>
-        <button class=" js-submit-sub">Subtract</button>
-        <button class=" js-submit-mul">Multiply</button>
-        <button class=" js-submit-div">Divide</button>
-      </div>
+      <span>
+        <input class="inputResult js-submit-add" type="submit">
+      </span>
+
     </div>
     <div class="dom__outputBlock js-op_block">
       <span>
         <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
+        <h5 class="inputResult js-result-add"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} sub {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes two numbers and returns the sum of these numbers</p>
+      </div>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value1" type="number">
+      </span>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value2" type="number">
+      </span>
+      <span>
+        <input class="inputResult js-submit-sub" type="submit">
+      </span>
+    </div>
+    <div class="dom__outputBlock js-op_block">
+      <span>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result-sub"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% comment %} mul {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes two numbers and returns the sum of these numbers</p>
+      </div>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value1" type="number">
+      </span>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value2" type="number">
+      </span>
+      <span>
+        <input class="inputResult js-submit-mul" type="submit">
+      </span>
+
+    </div>
+    <div class="dom__outputBlock js-op_block">
+      <span>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result-mul"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% comment %} div {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes two numbers and returns the sum of these numbers</p>
+      </div>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value1" type="number">
+      </span>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value2" type="number">
+      </span>
+      <span>
+        <input class="inputResult js-submit-div" type="submit">
+      </span>
+
+    </div>
+    <div class="dom__outputBlock js-op_block">
+      <span>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result-div"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} div {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes two numbers and returns the random of these numbers</p>
+      </div>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value1" type="number">
+      </span>
+      <span>
+        <label for="">Number interger</label>
+        <input class="inputResult js-value2" type="number">
+      </span>
+      <span>
+        <input class="inputResult js-submit-ran" type="submit">
+      </span>
+
+    </div>
+    <div class="dom__outputBlock js-op_block">
+      <span>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result-ran"></h5>
       </span>
     </div>
   </div>

@@ -4,6 +4,7 @@
     background: #E3E3E3;
     border: 1px solid;
     margin: 70px auto 0;
+    margin-bottom: 40px;
 
     @include below('tablet-large'){
         width: 100%;   
@@ -58,6 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #1E1E1E;
     
     span{
         display: flex;
