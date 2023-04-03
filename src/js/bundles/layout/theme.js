@@ -16,13 +16,12 @@ import mobileNavigation from '../components/mobile-navigation';
 import headerSearch from '../components/header-search';
 import ajaxSearch from '../components/ajax-search';
 import header from '../components/header'
-import dom from '../components/domExcercise'
+import '../components/domExcercise'
 
 mobileNavigation()
 headerSearch()
 ajaxSearch()
 header()
-dom()
 
 window.headerSearch.init();
 window.mobileNavigation.init();

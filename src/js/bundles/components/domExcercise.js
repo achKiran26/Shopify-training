@@ -11,7 +11,7 @@ export const domExcercise = () => {
   const mulResult = document.querySelector('.js-result-mul')
   const divResult = document.querySelector('.js-result-div')
   const ranResult = document.querySelector('.js-result-ran')
-  const input = document.querySelector('.inputResult')
+  const input = document.querySelector('h5')
   const error = document.querySelector('.js-error')
   const container = document.querySelector('.js-op_block')
 
@@ -23,6 +23,7 @@ export const domExcercise = () => {
       error.textContent = errorEmptyField1
       container.classList.remove('success')
       container.classList.add('error')
+      errorEmptyField2
     }else if(value2.value == ''){
       error.textContent = errorEmptyField2
       container.classList.remove('success')
@@ -35,12 +36,11 @@ export const domExcercise = () => {
       input.textContent = " "
       
     }else if(value1.value && value2.value){
-      addSubmit.remove()
+      error.textContent = "Result"
       container.classList.remove('error')
       container.classList.add('success')
     }
   }
-
   // exe
   addSubmit.addEventListener("click", () => {
     errHandle()
@@ -73,7 +73,6 @@ export const domExcercise = () => {
     console.log(result)
     ranResult.innerHTML = result
   })
-
   // Logic
   const add = (value1,value2) => {
     return parseInt(value1)+parseInt(value2)
