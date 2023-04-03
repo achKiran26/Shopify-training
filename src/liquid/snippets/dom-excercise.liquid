@@ -6,14 +6,14 @@
         <p>This module takes two numbers and returns the sum of these numbers</p>
       </div>
       <span>
-        <label for="sum1">Number interger</label>
+        <label for="sum1">Number1 interger</label>
         <input
           class="inputResult js-value1"
           id="sum1"
           type="number">
       </span>
       <span>
-        <label for="sum2">Number interger</label>
+        <label for="sum2">Number2 interger</label>
         <input
           class="inputResult js-value2"
           id="sum2"
@@ -39,16 +39,16 @@
         <p>This module takes two numbers and returns the difference of these numbers</p>
       </div>
       <span>
-        <label for="dif1">Number interger</label>
+        <label for="dif1">Number1 interger</label>
         <input
-          class="inputResult js-value1"
+          class="inputResult js-value11"
           id="dif1"
           type="number">
       </span>
       <span>
-        <label for="dif2">Number interger</label>
+        <label for="dif2">Number2 interger</label>
         <input
-          class="inputResult js-value2"
+          class="inputResult js-value21"
           id="dif2"
           type="number">
       </span>
@@ -64,7 +64,6 @@
     </div>
   </div>
 </div>
-
 {% comment %} mul {% endcomment %}
 <div class="dom__container">
   <div class="dom__wrapper">
@@ -73,14 +72,14 @@
         <p>This module takes two numbers and returns the product of these numbers</p>
       </div>
       <span>
-        <label for="mul1">Number interger</label>
+        <label for="mul1">Number1 interger</label>
         <input
           class="inputResult js-value1"
           id="mul1"
           type="number">
       </span>
       <span>
-        <label for="mul2">Number interger</label>
+        <label for="mul2">Number2 interger</label>
         <input
           class="inputResult js-value2"
           id="mul2"
@@ -99,8 +98,7 @@
     </div>
   </div>
 </div>
-
-{% comment %} div {% endcomment %}
+{% comment %} div{% endcomment %}
 <div class="dom__container">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
@@ -108,14 +106,14 @@
         <p>This module takes two numbers and returns the quotient of these numbers</p>
       </div>
       <span>
-        <label for="div1">Number interger</label>
+        <label for="div1">Number1 interger</label>
         <input
           class="inputResult js-value1"
           id="div1"
           type="number">
       </span>
       <span>
-        <label for="div2">Number interger</label>
+        <label for="div2">Number2 interger</label>
         <input
           class="inputResult js-value2"
           id="div2"
@@ -142,14 +140,14 @@
         <p>This module takes two numbers and returns the random of these numbers</p>
       </div>
       <span>
-        <label for="num1">Number interger</label>
+        <label for="num1">Number1 interger</label>
         <input
           class="inputResult js-value1"
           id="num1"
           type="number">
       </span>
       <span>
-        <label for="num2">Number interger</label>
+        <label for="num2">Number2 interger</label>
         <input
           class="inputResult js-value2"
           id="num2"
@@ -164,6 +162,33 @@
       <span>
         <label class="js-error" for="">Result</label>
         <h5 class="inputResult js-result-ran"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} num of character {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes takes a string and returns the number of characters in the string</p>
+      </div>
+      <span>
+        <label for="num1">Enter a string</label>
+        <input
+          class="inputResult js-value1"
+          id="num1"
+          type="text">
+      </span>
+      <span>
+        <input class="inputResult js-submit-str" type="submit">
+      </span>
+
+    </div>
+    <div class="dom__outputBlock js-op_block">
+      <span>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result-str"></h5>
       </span>
     </div>
   </div>
