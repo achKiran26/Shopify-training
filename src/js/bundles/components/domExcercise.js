@@ -1,6 +1,4 @@
 export const domExcercise = () => {
-  const value1 = document.querySelector('.js-value1')
-  const value2 = document.querySelector('.js-value2')
   const addSubmit = document.querySelector('.js-submit-add')
   const subSubmit = document.querySelector('.js-submit-sub')
   const mulSubmit = document.querySelector('.js-submit-mul')
@@ -11,7 +9,6 @@ export const domExcercise = () => {
   const mulResult = document.querySelector('.js-result-mul')
   const divResult = document.querySelector('.js-result-div')
   const ranResult = document.querySelector('.js-result-ran')
-  const input = document.querySelector('h5')
   const error = document.querySelector('.js-error')
   const container = document.querySelector('.js-op_block')
 
@@ -20,73 +17,68 @@ export const domExcercise = () => {
     container.classList.add('error')
   }
 
-  function errorHandle(){
-    const errorEmptyFields = "Both inputs cannot be empty."
-    const errorEmptyField1 = "Please add the input value for 1st input field"
-    const errorEmptyField2 = "Please add the input value for 2nd input field"
-    
+  function errorHandle(num1,num2){
 
-    if (value1.value === 0 && value2.value === 0) {
-      error.innerText = errorEmptyFields
-      input.innerText = ""
+    const errorEmptyFields = "Enter valid input"
+    const errorEmptyField2 = "Please input both numbers"
+   
+     if(num1==="" || num2===""){
+      num1 = 0
+      num2 = 0
+      error.innerHTML = errorEmptyField2
+      // res.innerText = ""
       toggleClass()
+      return true
+    }
+    num1 = parseInt(num1)
+    num2 = parseInt(num2)
+    error.innerHTML="Result"
+    container.classList.add('success')
+    return false
+  }
+  // exe add
+  const add1 = document.querySelector('.js-addValue1')
+  const add2 = document.querySelector('.js-addValue2')
+  addSubmit.addEventListener("click", () => {
+    if (errorHandle(add1,add2)) {
       return
     }
-    else if (!Number.isInteger(value1.value) || !Number.isInteger(value2.value)) {
-      error.innerText = errorEmptyFields
-      input.innerText = ""
-      toggleClass()
-      return;
-    }
-    else if(value1.value == ''){
-      error.textContent = errorEmptyField1
-      toggleClass()
-    }else if(value2.value == ''){
-      error.textContent = errorEmptyField2
-      toggleClass()
-    }else if(value1.value && value2.value){
-      error.textContent = "Result"
-      container.classList.remove('error')
-      container.classList.add('success')
-    }
-  }
-  // exe
-  addSubmit.addEventListener("click", () => {
-    const errorForm = addSubmit.parentElement
-    console.log(errorForm)
-    const selector = errorForm.querySelector('.js-error')
-    let result = add(value1.value,value2.value);
-    console.log(result)
+    let result = add(add1.value,add2.value);
     addResult.innerHTML = result
-    errorHandle(selector)
+    error.innerHTML =""
   })
-
+  //exe sub
+  const sub1 = document.querySelector('.js-subValue1')
+  const sub2 = document.querySelector('.js-subValue2')
   subSubmit.addEventListener("click", () => {
-    const errorForm = subSubmit.parentElement
-    const selector = errorForm.querySelector('.js-error')
-    let result = subtract(value1.value, value2.value)
+    if (errorHandle(sub1,sub2)) {
+      return
+    } 
+    let result = subtract(sub1.value, sub2.value)
     subResult.innerHTML = result
-    errorHandle(selector)
+    error.innerHTML=""
   })
-
-  // mulSubmit.addEventListener("click", () => {
-  //   errHandle()
-  //   let result = multiply(value1.value, value2.value)
-  //   mulResult.innerHTML = result
-  // })
-
-  // divSubmit.addEventListener("click", () => {
-  //   errHandle()
-  //   let result = divide(value1.value, value2.value)
-  //   divResult.innerHTML = result
-  // })
-
-  // ranSubmit.addEventListener("click", () => {
-  //   errHandle()
-  //   let result = random(value1.value, value2.value)
-  //   console.log(result)
-  //   ranResult.innerHTML = result
-  // })
+  //exe mul
+  const mul1 = document.querySelector('.js-mulValue1')
+  const mul2 = document.querySelector('.js-mulValue2')
+  mulSubmit.addEventListener("click", () => {
+    
+    let result = multiply(mul1.value, mul2.value)
+    mulResult.innerHTML = result
+  })
+  //exe div
+  const div1 = document.querySelector('.js-divValue1')
+  const div2 = document.querySelector('.js-divValue2')
+  divSubmit.addEventListener("click", () => {
+    let result = divide(div1.value, div2.value)
+    divResult.innerHTML = result
+  })
+  //exe random number
+  ranSubmit.addEventListener("click", () => {  
+    let result = random(ran1.value, ran1.value)
+    console.log(result)
+    ranResult.innerHTML = result
+  })
   // Logic
   const add = (value1,value2) => {
     return parseInt(value1)+parseInt(value2)

@@ -1,5 +1,5 @@
 .dom__container{
-    width: max-content;
+    width: 1240px;
     height: auto;
     background: #E3E3E3;
     border: 1px solid;
@@ -13,7 +13,7 @@
 
 .dom__wrapper{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
 }
@@ -33,6 +33,7 @@
 }
 
 .inputResult{
+    border: 2px solid;
     background: white;
     width: 300px;
     height: 50px;
