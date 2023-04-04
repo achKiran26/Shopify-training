@@ -37,24 +37,26 @@ export const domExcercise = () => {
     return false
   }
   // exe add
-  const add1 = document.querySelector('.js-addValue1')
-  const add2 = document.querySelector('.js-addValue2')
+  
   addSubmit.addEventListener("click", () => {
+    const add1 = document.querySelector('.js-addValue1').value
+  const add2 = document.querySelector('.js-addValue2').value
     if (errorHandle(add1,add2)) {
       return
     }
-    let result = add(add1.value,add2.value);
+    let result = add(add1,add2);
     addResult.innerHTML = result
     error.innerHTML =""
   })
   //exe sub
-  const sub1 = document.querySelector('.js-subValue1')
-  const sub2 = document.querySelector('.js-subValue2')
+  
   subSubmit.addEventListener("click", () => {
+    const sub1 = document.querySelector('.js-subValue1').value
+  const sub2 = document.querySelector('.js-subValue2').value
     if (errorHandle(sub1,sub2)) {
       return
     } 
-    let result = subtract(sub1.value, sub2.value)
+    let result = subtract(sub1, sub2)
     subResult.innerHTML = result
     error.innerHTML=""
   })
