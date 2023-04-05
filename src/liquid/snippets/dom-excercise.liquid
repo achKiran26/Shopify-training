@@ -23,9 +23,9 @@
         <input class="inputResult js-submit-add" type="submit">
       </span>
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-add">
       <span>
-        <label class="js-error">Result</label>
+        <label class="js-error-add">Result</label>
         <h5 class="inputResult js-result-add"></h5>
       </span>
     </div>
@@ -56,9 +56,9 @@
         <input class="inputResult js-submit-sub" type="submit">
       </span>
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-sub">
       <span>
-        <label class="js-error" for="">Result</label>
+        <label class="js-error-sub" for="">Result</label>
         <h5 class="inputResult js-result-sub"></h5>
       </span>
     </div>
@@ -90,9 +90,9 @@
       </span>
 
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-mul">
       <span>
-        <label class="js-error" for="">Result</label>
+        <label class="js-error-mul" for="">Result</label>
         <h5 class="inputResult js-result-mul"></h5>
       </span>
     </div>
@@ -124,15 +124,15 @@
       </span>
 
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-div">
       <span>
-        <label class="js-error" for="">Result</label>
+        <label class="js-error-div" for="">Result</label>
         <h5 class="inputResult js-result-div"></h5>
       </span>
     </div>
   </div>
 </div>
-{% comment %} div {% endcomment %}
+{% comment %} random {% endcomment %}
 <div class="dom__container">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
@@ -142,14 +142,14 @@
       <span>
         <label for="num1">Number1 interger</label>
         <input
-          class="inputResult js-value1"
+          class="inputResult js-ranValue1"
           id="num1"
           type="number">
       </span>
       <span>
         <label for="num2">Number2 interger</label>
         <input
-          class="inputResult js-value2"
+          class="inputResult js-ranValue2"
           id="num2"
           type="number">
       </span>
@@ -158,9 +158,9 @@
       </span>
 
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-ran">
       <span>
-        <label class="js-error" for="">Result</label>
+        <label class="js-error-ran" for="">Result</label>
         <h5 class="inputResult js-result-ran"></h5>
       </span>
     </div>
@@ -176,7 +176,7 @@
       <span>
         <label for="num1">Enter a string</label>
         <input
-          class="inputResult js-value1"
+          class="inputResult js-strValue1"
           id="num1"
           type="text">
       </span>
@@ -185,40 +185,191 @@
       </span>
 
     </div>
-    <div class="dom__outputBlock js-op_block">
+    <div class="dom__outputBlock js-op_block-str">
       <span>
-        <label class="js-error" for="">Result</label>
+        <label class="js-error-str" for="">Result</label>
         <h5 class="inputResult js-result-str"></h5>
       </span>
     </div>
   </div>
 </div>
+{% comment %} add 2 strings {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>This module takes two strings and returns a combination of the two strings</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-conValue1"
+          id="num1"
+          type="text">
+      </span>
+      <span>
+        <label for="num2">Number2 interger</label>
+        <input
+          class="inputResult js-conValue2"
+          id="num2"
+          type="text">
+      </span>
+      <span>
+        <input class="inputResult js-submit-concat" type="submit">
+      </span>
 
+    </div>
+    <div class="dom__outputBlock js-op_block-con">
+      <span>
+        <label class="js-error-con" for="">Result</label>
+        <h5 class="inputResult js-result-concat"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} check for repeat {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>takes two strings, and returns true/false based on if the second string exists inside the first string</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-repValue1"
+          id="num1"
+          type="text">
+      </span>
+      <span>
+        <label for="num2">Number2 interger</label>
+        <input
+          class="inputResult js-repValue2"
+          id="num2"
+          type="text">
+      </span>
+      <span>
+        <input class="inputResult js-submit-repeat" type="submit">
+      </span>
 
-{% comment %} <h1>Simple Calculator</h1>
-  <h2>Addition</h2>
-  <input
-  type="number"
-  id="addNum1"
-  placeholder="Enter first number">
-  <input
-  type="number"
-  id="addNum2"
-  placeholder="Enter second number">
-  <button id="add">Add</button>
-  <h3>Result:
-  <span id="addResult"></span>
-  </h3>
-  <h2>Subtraction</h2>
-  <input
-  type="number"
-  id="subNum1"
-  placeholder="Enter first number">
-  <input
-  type="number"
-  id="subNum2"
-  placeholder="Enter second number">
-  <button id="subtract">Subtract</button>
-  <h3>Result:
-  <span id="subResult"></span>
-</h3> {% endcomment %}
+    </div>
+    <div class="dom__outputBlock js-op_block-rep">
+      <span>
+        <label class="js-error-rep" for="">Result</label>
+        <h5 class="inputResult js-result-repeat"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} check for repeat count {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>The module takes two strings, and returns the number of times that the second string is found in the first one</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-repCountValue1"
+          id="num1"
+          type="text">
+      </span>
+      <span>
+        <label for="num2">Number2 interger</label>
+        <input
+          class="inputResult js-repCountValue2"
+          id="num2"
+          type="text">
+      </span>
+      <span>
+        <input class="inputResult js-submit-repeatCount" type="submit">
+      </span>
+
+    </div>
+    <div class="dom__outputBlock js-op_block-repC">
+      <span>
+        <label class="js-error-repCount" for="">Result</label>
+        <h5 class="inputResult js-result-repeatCount"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} check for reverse str {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>The module takes two strings, and returns the number of times that the second string is found in the first one</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-revStrValue1"
+          id="num1"
+          type="text">
+      </span>
+      <span>
+        <input class="inputResult js-submit-revStr" type="submit">
+      </span>
+    </div>
+    <div class="dom__outputBlock js-op_block-rev">
+      <span>
+        <label class="js-error-revStr" for="">Result</label>
+        <h5 class="inputResult js-result-revStr"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} email validation {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>The module takes one string, and checks if it's a valid email address</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-emailValue1"
+          id="num1"
+          type="email">
+      </span>
+      <span>
+        <input class="inputResult js-submit-email" type="submit">
+      </span>
+    </div>
+    <div class="dom__outputBlock js-op_block-em">
+      <span>
+        <label class="js-error-emailVal" for="">Result</label>
+        <h5 class="inputResult js-result-email"></h5>
+      </span>
+    </div>
+  </div>
+</div>
+{% comment %} str checker {% endcomment %}
+<div class="dom__container">
+  <div class="dom__wrapper">
+    <div class="dom__inputBlock">
+      <div class="dom__header">
+        <p>The module  that takes one string, if it passes some rules</p>
+      </div>
+      <span>
+        <label for="num1">Number1 interger</label>
+        <input
+          class="inputResult js-strCheckValue1"
+          id="num1"
+          type="email">
+      </span>
+      <span>
+        <input class="inputResult js-submit-strCheck" type="submit">
+      </span>
+    </div>
+    <div class="dom__outputBlock js-op_block-check">
+      <span>
+        <label class="js-error-strCheck" for="">Result</label>
+        <h5 class="inputResult js-result-strCheck"></h5>
+      </span>
+    </div>
+  </div>
+</div>
