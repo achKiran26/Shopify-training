@@ -12,10 +12,9 @@
 }
 
 .dom__wrapper{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 70% 30%;
     align-items: center;
-    gap: 20px;
 }
 
 .dom__inputBlock{
@@ -55,9 +54,9 @@
 }
 
 .dom__outputBlock{
-    padding: 140px 0;
-    width: 350px;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 2px solid #1E1E1E;
@@ -77,8 +76,12 @@
     
     h5{
         text-align: center;
-        padding: 15px 0;
-        width: 150px;
+        padding: 15px 5px;
+        width: 100%;
+    }
+
+    p{
+        padding: 10px;
     }
 
     &.error,&.success{    
@@ -96,5 +99,9 @@
         background-color: #E3F3E0;
         border: 2px solid #41830D;
     }
+}
+
+.err{
+    color: #B73232;
 }
 

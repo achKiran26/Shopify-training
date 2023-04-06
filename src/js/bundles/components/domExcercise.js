@@ -1,3 +1,5 @@
+import { remove } from "@vue/shared"
+
 export const domExcercise = () => {
   const addSubmit = document.querySelector('.js-submit-add')
   const subSubmit = document.querySelector('.js-submit-sub')
@@ -23,35 +25,43 @@ export const domExcercise = () => {
   const revStrResult = document.querySelector('.js-result-revStr')
   const emailResult = document.querySelector('.js-result-email')
   const strCheckResult = document.querySelector('.js-result-strCheck')
+  const errorStrCheck = document.querySelector('.js-result-strCheckerror')
   
-
   function toggleClass(container) {
     container.classList.remove('success')
     container.classList.add('error')
   }
-
-  function errorHandleInput(num1,num2,error,container){
-
-    const errorEmptyFields = "Enter valid input"
-    const errorEmptyField2 = "Please input both numbers"
-     if(num1 === "" || num2 === ""){
-      num1 = 0
-      num2 = 0
-      error.innerHTML = errorEmptyField2
+  function errorHandleInput(num1,num2,error,container,res){
+    const errorEmptyField1 = "Enter value for input 1"
+    const errorEmptyField2 = "Enter value for input 2"
+    const errorEmptyFields = "Please input both numbers"
+    let val1 = num1
+    let val2 = num2
+     if(val1 === "" || val2 === ""){
+      error.innerHTML = errorEmptyFields
+      res.style.display="none"
       return true
     }
+    res.style.display="block"
     error.innerHTML="Result"
     container.classList.add('success')
     return false
   }
-  function errorHandleInputs(num1,error,container){
-
+  function errorHandleInputs(num1,error,container,res){
     const errorEmptyFields = "Enter valid input"
-    const errorEmptyField2 = "Please input both numbers"
+    const errorEmptyField2 = "Input field cannot be empty"
      if(num1 === ""){
       error.textContent = errorEmptyField2
+      res.style.display="none"
       return true
     }
+    
+    // console.log("he",res)
+  //  if (change == "false" ) {
+  //   container.classList.remove('success')
+  //   container.classList.add('error')
+  //  }
+    res.style.display="block"
     error.innerHTML="Result"
     container.classList.add('success')
     return false
@@ -62,10 +72,9 @@ export const domExcercise = () => {
     const add2 = document.querySelector('.js-addValue2').value
     const error = document.querySelector('.js-error-add')
     const container = document.querySelector('.js-op_block-add')
-    if (errorHandleInput(add1,add2,error,container)) {
+    if (errorHandleInput(add1,add2,error,container,addResult)) {
       toggleClass(container)
       return
-      
     }
     let result = add(add1,add2);
     addResult.innerHTML = result
@@ -76,7 +85,7 @@ export const domExcercise = () => {
     const sub2 = document.querySelector('.js-subValue2').value
     const error = document.querySelector('.js-error-sub')
     const container = document.querySelector('.js-op_block-sub')
-    if (errorHandleInput(sub1,sub2,error,container)) {
+    if (errorHandleInput(sub1,sub2,error,container,subResult)) {
       toggleClass(container)
       return
     } 
@@ -89,7 +98,7 @@ export const domExcercise = () => {
     const mul2 = document.querySelector('.js-mulValue2').value
     const error = document.querySelector('.js-error-mul')
     const container = document.querySelector('.js-op_block-mul')
-    if (errorHandleInput(mul1,mul2,error,container)) {
+    if (errorHandleInput(mul1,mul2,error,container,mulResult)) {
       toggleClass(container)
       return
     } 
@@ -102,7 +111,7 @@ export const domExcercise = () => {
     const div2 = document.querySelector('.js-divValue2').value
     const error = document.querySelector('.js-error-div')
     const container = document.querySelector('.js-op_block-div')
-    if (errorHandleInput(div1,div2,error,container)) {
+    if (errorHandleInput(div1,div2,error,container,divResult)) {
       toggleClass(container)
       return
     } 
@@ -115,7 +124,7 @@ export const domExcercise = () => {
     const ran2 = document.querySelector('.js-ranValue2').value
     const error = document.querySelector('.js-error-ran') 
     const container = document.querySelector('.js-op_block-ran')
-    if (errorHandleInput(ran1,ran2,error,container)) {
+    if (errorHandleInput(ran1,ran2,error,container,ranResult)) {
       toggleClass(container)
       return
     } 
@@ -128,7 +137,7 @@ export const domExcercise = () => {
     const trimStr = str1.trim()
     const error = document.querySelector('.js-error-str') 
     const container = document.querySelector('.js-op_block-str')
-    if (errorHandleInputs(str1,error,container)) {
+    if (errorHandleInputs(str1,error,container,strResult)) {
       toggleClass(container)
       return
     } 
@@ -141,7 +150,7 @@ export const domExcercise = () => {
     const con2 = document.querySelector('.js-conValue2').value
     const error = document.querySelector('.js-error-con') 
     const container = document.querySelector('.js-op_block-con')
-    if (errorHandleInput(con1,con2,error,container)) {
+    if (errorHandleInput(con1,con2,error,container,concatResult)) {
       toggleClass(container)
       return
     } 
@@ -154,7 +163,7 @@ export const domExcercise = () => {
     const rep2 = document.querySelector('.js-repValue2').value
     const error = document.querySelector('.js-error-rep')
     const container = document.querySelector('.js-op_block-rep')
-    if (errorHandleInput(rep1,rep2,error,container)) {
+    if (errorHandleInput(rep1,rep2,error,container,repeatResult)) {
       toggleClass(container)
       return
     } 
@@ -168,7 +177,7 @@ export const domExcercise = () => {
     let trim = rep2.trim()
     const error = document.querySelector('.js-error-repCount')
     const container = document.querySelector('.js-op_block-repC')
-    if (errorHandleInput(rep1,rep2,error,container)) {
+    if (errorHandleInput(rep1,rep2,error,container,repeatCountResult)) {
       toggleClass(container)
       return
     } 
@@ -182,7 +191,7 @@ export const domExcercise = () => {
     const trimStr = str1.trim()
     const error = document.querySelector('.js-error-revStr') 
     const container = document.querySelector('.js-op_block-rev')
-    if (errorHandleInputs(str1,error,container)) {
+    if (errorHandleInputs(str1,error,container,revStrResult)) {
       toggleClass(container)
       return
     } 
@@ -196,10 +205,10 @@ export const domExcercise = () => {
     const trimStr = str1.trim()
     const error = document.querySelector('.js-error-emailVal') 
     const container = document.querySelector('.js-op_block-em')
-    if (errorHandleInputs(str1,error,container)) {
+    if (errorHandleInputs(str1,error,container,emailResult)) {
       toggleClass(container)
       return
-    } 
+    }  
     let result = emailValidator(trimStr)
     emailResult.innerHTML = result
   })
@@ -209,12 +218,19 @@ export const domExcercise = () => {
     const trimStr = str1.trim()
     const error = document.querySelector('.js-error-strCheck') 
     const container = document.querySelector('.js-op_block-check')
-    if (errorHandleInputs(str1,error,container)) {
+    if (errorHandleInputs(str1,error,container,strCheckResult)) {
       toggleClass(container)
       return
     } 
-    let result = strChecker(trimStr)
-    strCheckResult.innerHTML = result
+    let change = strCheckResult.innerHTML
+    console.log(change,"hit1")
+      if (change === false) {
+        console.log("succ")
+        toggleClass(container)
+      }
+      let result = strChecker(trimStr)
+      errorStrCheck.classList.add("err")
+      strCheckResult.innerHTML = result    
   })
   // Logic
   const add = (value1,value2) => {
@@ -234,7 +250,7 @@ export const domExcercise = () => {
   }
 
   const random = (value1,value2) => {
-    return Math.floor(Math.random() * value1 + value2) + 1
+    return Math.floor(Math.random() * value2 + value1) + 1
   }
   const charStr = (value1) => {
     return value1.length
@@ -250,38 +266,43 @@ export const domExcercise = () => {
     } 
   }
   const repeatCountStr = (value1,value2) => {
-    if (value1.includes(value2)) {
-      return value2.length
-    }
+    const reg = new RegExp(value2,"g")
+    const count = (value1.match(reg)|| []).length
+    return count
   }
   const reverseStr = (value1) => {
-    const arr = value1.split("");
+    const arr = value1.split("")
     const rev = arr.reverse()
-    const addChar = rev.join("");
+    const addChar = rev.join("")
     return addChar
   }
   const emailValidator = (value1)=>{
-    const regValue = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const regValue = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if(value1.match(regValue))
     {
-      return true;
+      return true
     }else{
       return false
     }
   }
   const strChecker = (value1)=>{
     if (value1.length < 10) {
+      errorStrCheck.innerHTML="string needs to be at least 10 characters long"
       return false
     } 
     if(!/[A-Z]/.test(value1)){
+      errorStrCheck.innerHTML="string needs to include at least one uppercase character"
       return false
     }
     if(!/[a-z]/.test(value1)){
+      errorStrCheck.innerHTML="string needs to include at least on lowercase character"
       return false
     }
     if(!/\d/.test(value1)){
+      errorStrCheck.innerHTML="string needs to include at least one number"
       return false
     }
+    errorStrCheck.innerHTML=""
     return true
   }
 }
