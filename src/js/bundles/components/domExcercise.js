@@ -1,5 +1,3 @@
-import { remove } from "@vue/shared"
-
 export const domExcercise = () => {
   const addSubmit = document.querySelector('.js-submit-add')
   const subSubmit = document.querySelector('.js-submit-sub')
@@ -32,19 +30,22 @@ export const domExcercise = () => {
     container.classList.add('error')
   }
   function errorHandleInput(num1,num2,error,container,res){
-    const errorEmptyField1 = "Enter value for input 1"
-    const errorEmptyField2 = "Enter value for input 2"
     const errorEmptyFields = "Please input both numbers"
-    let val1 = num1
-    let val2 = num2
-     if(val1 === "" || val2 === ""){
+     if(num1 == "" && num2 == ""){
       error.innerHTML = errorEmptyFields
+      toggleClass(container)
       res.style.display="none"
       return true
     }
+    if(num1 == "" || num2 == ""){
+      container.classList.remove('success')
+      container.classList.add('error')
+    }
+    if (num1 && num2) {
+      container.classList.add('success')
+    }
     res.style.display="block"
     error.innerHTML="Result"
-    container.classList.add('success')
     return false
   }
   function errorHandleInputs(num1,error,container,res){
@@ -55,12 +56,6 @@ export const domExcercise = () => {
       res.style.display="none"
       return true
     }
-    
-    // console.log("he",res)
-  //  if (change == "false" ) {
-  //   container.classList.remove('success')
-  //   container.classList.add('error')
-  //  }
     res.style.display="block"
     error.innerHTML="Result"
     container.classList.add('success')
@@ -68,12 +63,12 @@ export const domExcercise = () => {
   }
   // exe add
   addSubmit.addEventListener("click", () => {
-    const add1 = document.querySelector('.js-addValue1').value
-    const add2 = document.querySelector('.js-addValue2').value
+    const add1 = document.querySelector('.js-addValue1').value || 0
+    const add2 = document.querySelector('.js-addValue2').value || 0
+    console.log(add2)
     const error = document.querySelector('.js-error-add')
     const container = document.querySelector('.js-op_block-add')
     if (errorHandleInput(add1,add2,error,container,addResult)) {
-      toggleClass(container)
       return
     }
     let result = add(add1,add2);
@@ -81,8 +76,8 @@ export const domExcercise = () => {
   })
   //exe sub  
   subSubmit.addEventListener("click", () => {
-    const sub1 = document.querySelector('.js-subValue1').value
-    const sub2 = document.querySelector('.js-subValue2').value
+    const sub1 = document.querySelector('.js-subValue1').value || 0
+    const sub2 = document.querySelector('.js-subValue2').value || 0
     const error = document.querySelector('.js-error-sub')
     const container = document.querySelector('.js-op_block-sub')
     if (errorHandleInput(sub1,sub2,error,container,subResult)) {
@@ -94,8 +89,8 @@ export const domExcercise = () => {
   })
   //exe mul
   mulSubmit.addEventListener("click", () => {
-    const mul1 = document.querySelector('.js-mulValue1').value
-    const mul2 = document.querySelector('.js-mulValue2').value
+    const mul1 = document.querySelector('.js-mulValue1').value || 0
+    const mul2 = document.querySelector('.js-mulValue2').value || 0
     const error = document.querySelector('.js-error-mul')
     const container = document.querySelector('.js-op_block-mul')
     if (errorHandleInput(mul1,mul2,error,container,mulResult)) {
@@ -107,8 +102,8 @@ export const domExcercise = () => {
   })
   //exe div
   divSubmit.addEventListener("click", () => {
-    const div1 = document.querySelector('.js-divValue1').value
-    const div2 = document.querySelector('.js-divValue2').value
+    const div1 = document.querySelector('.js-divValue1').value || 0
+    const div2 = document.querySelector('.js-divValue2').value || 0
     const error = document.querySelector('.js-error-div')
     const container = document.querySelector('.js-op_block-div')
     if (errorHandleInput(div1,div2,error,container,divResult)) {
@@ -120,8 +115,8 @@ export const domExcercise = () => {
   })
   //exe random number
   ranSubmit.addEventListener("click", () => { 
-    const ran1 = document.querySelector('.js-ranValue2').value
-    const ran2 = document.querySelector('.js-ranValue2').value
+    const ran1 = document.querySelector('.js-ranValue1').value || 0
+    const ran2 = document.querySelector('.js-ranValue2').value || 0
     const error = document.querySelector('.js-error-ran') 
     const container = document.querySelector('.js-op_block-ran')
     if (errorHandleInput(ran1,ran2,error,container,ranResult)) {
@@ -222,12 +217,10 @@ export const domExcercise = () => {
       toggleClass(container)
       return
     } 
-    let change = strCheckResult.innerHTML
-    console.log(change,"hit1")
-      if (change === false) {
-        console.log("succ")
-        toggleClass(container)
-      }
+    // let change = strCheckResult.innerHTML
+    //   if (change === false) {
+    //     toggleClass(container)
+    //   }
       let result = strChecker(trimStr)
       errorStrCheck.classList.add("err")
       strCheckResult.innerHTML = result    
@@ -250,7 +243,14 @@ export const domExcercise = () => {
   }
 
   const random = (value1,value2) => {
-    return Math.floor(Math.random() * value2 + value1) + 1
+    if (value1 > value2) {
+      const error = document.querySelector('.js-error-ran') 
+      error.innerHTML="Not valid"
+      error.classList.add("err")
+      value1=""
+      value2=""
+    }
+    return Math.floor(Math.random() * (value2 - value1 + 1) + value1)
   }
   const charStr = (value1) => {
     return value1.length
@@ -259,9 +259,12 @@ export const domExcercise = () => {
     return value1.concat(value2);
   }
   const repeatStr = (value1,value2) => {
+    const error = document.querySelector('.js-op_block-rep')
     if (value1.includes(value2)) {
       return true
     }else{
+      error.classList.remove("success")
+      error.classList.add("error")
       return false
     } 
   }
@@ -278,28 +281,43 @@ export const domExcercise = () => {
   }
   const emailValidator = (value1)=>{
     const regValue = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    function errorState() {
+      container.classList.remove("success")
+      container.classList.add("error")
+    }
+    const container = document.querySelector('.js-op_block-em')
     if(value1.match(regValue))
     {
       return true
     }else{
+      errorState()
       return false
     }
   }
   const strChecker = (value1)=>{
+    function errorState() {
+      container.classList.remove("success")
+      container.classList.add("error")
+    }
+    const container = document.querySelector('.js-op_block-check')
     if (value1.length < 10) {
       errorStrCheck.innerHTML="string needs to be at least 10 characters long"
+      errorState()
       return false
     } 
     if(!/[A-Z]/.test(value1)){
       errorStrCheck.innerHTML="string needs to include at least one uppercase character"
+      errorState()
       return false
     }
     if(!/[a-z]/.test(value1)){
       errorStrCheck.innerHTML="string needs to include at least on lowercase character"
+      errorState()
       return false
     }
     if(!/\d/.test(value1)){
       errorStrCheck.innerHTML="string needs to include at least one number"
+      errorState()
       return false
     }
     errorStrCheck.innerHTML=""

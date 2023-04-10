@@ -1,5 +1,5 @@
 .dom__container{
-    width: 1240px;
+    width: 100%;
     height: auto;
     background: #E3E3E3;
     border: 1px solid;
@@ -103,5 +103,8 @@
 
 .err{
     color: #B73232;
+}
+.succ{
+    color: #000000;
 }
 
