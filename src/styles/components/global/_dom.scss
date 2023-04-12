@@ -1,3 +1,7 @@
+.dom__mainContainer{
+    width: 80%;
+    margin: auto;
+}
 .dom__container{
     width: 100%;
     height: auto;
@@ -112,5 +116,9 @@
 }
 .block{
     display: block;
+}
+
+li{
+    list-style: none;
 }
 
