@@ -1,39 +1,39 @@
 {% comment %} add {% endcomment %}
 <div class="dom__mainContainer">
-<div class="dom__container">
+<div class="dom__container" id="add">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
         <p>This module takes two numbers and returns the sum of these numbers</p>
       </div>
+        <span>
+          <label for="sum1">Number1 interger</label>
+          <input
+            class="inputResult js-value1"
+            id="sum1"
+            type="number" onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <label for="sum2">Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="sum2"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
       <span>
-        <label for="sum1">Number1 interger</label>
-        <input
-          class="inputResult js-addValue1"
-          id="sum1"
-          type="number" onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <label for="sum2">Number2 interger</label>
-        <input
-          class="inputResult js-addValue2"
-          id="sum2"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <input class="inputResult js-submit-add" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
     </div>
     <div class="dom__outputBlock js-op_block-add">
       <span>
-        <label class="js-error-add">Result</label>
-        <h5 class="inputResult js-result-add"></h5>
+        <label class="js-error">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} sub {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="sub">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -42,31 +42,31 @@
       <span>
         <label for="dif1">Number1 interger</label>
         <input
-          class="inputResult js-subValue1"
+          class="inputResult js-value1"
           id="dif1"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
         <label for="dif2">Number2 interger</label>
         <input
-          class="inputResult js-subValue2"
+          class="inputResult js-value2"
           id="dif2"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
-        <input class="inputResult js-submit-sub" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
     </div>
     <div class="dom__outputBlock js-op_block-sub">
       <span>
-        <label class="js-error-sub" for="">Result</label>
-        <h5 class="inputResult js-result-sub"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} mul {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="mul">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -75,32 +75,32 @@
       <span>
         <label for="mul1">Number1 interger</label>
         <input
-          class="inputResult js-mulValue1"
+          class="inputResult js-value1"
           id="mul1"
           type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
         <label for="mul2">Number2 interger</label>
         <input
-          class="inputResult js-mulValue2"
+          class="inputResult js-value2"
           id="mul2"
           type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
-        <input class="inputResult js-submit-mul" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-mul">
       <span>
-        <label class="js-error-mul" for="">Result</label>
-        <h5 class="inputResult js-result-mul"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} div{% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="div">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -109,32 +109,32 @@
       <span>
         <label for="div1">Number1 interger</label>
         <input
-          class="inputResult js-divValue1"
+          class="inputResult js-value1"
           id="div1"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
         <label for="div2">Number2 interger</label>
         <input
-          class="inputResult js-divValue2"
+          class="inputResult js-value2"
           id="div2"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
-        <input class="inputResult js-submit-div" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-div">
       <span>
-        <label class="js-error-div" for="">Result</label>
-        <h5 class="inputResult js-result-div"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} random {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="ran">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -143,32 +143,32 @@
       <span>
         <label for="num1">Minimum Number1 interger</label>
         <input
-          class="inputResult js-ranValue1"
+          class="inputResult js-value1"
           id="num1"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
         <label for="num2">Maximum Number2 interger</label>
         <input
-          class="inputResult js-ranValue2"
+          class="inputResult js-value2"
           id="num2"
           type="number"onkeydown="return event.keyCode !== 69">
       </span>
       <span>
-        <input class="inputResult js-submit-ran" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-ran">
       <span>
-        <label class="js-error-ran" for="">Result</label>
-        <h5 class="inputResult js-result-ran"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result" id="result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} num of character {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="str">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -177,25 +177,25 @@
       <span>
         <label for="num1">Enter a string</label>
         <input
-          class="inputResult js-strValue1"
+          class="inputResult js-value1"
           id="num1"
           type="text">
       </span>
       <span>
-        <input class="inputResult js-submit-str" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-str">
       <span>
-        <label class="js-error-str" for="">Result</label>
-        <h5 class="inputResult js-result-str"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} add 2 strings {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="con">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -204,32 +204,32 @@
       <span>
         <label for="num1">Enter string1</label>
         <input
-          class="inputResult js-conValue1"
+          class="inputResult js-value1"
           id="num1"
           type="text">
       </span>
       <span>
         <label for="num2">Enter string2</label>
         <input
-          class="inputResult js-conValue2"
+          class="inputResult js-value2"
           id="num2"
           type="text">
       </span>
       <span>
-        <input class="inputResult js-submit-con" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-con">
       <span>
-        <label class="js-error-con" for="">Result</label>
-        <h5 class="inputResult js-result-con"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} check for repeat {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="rep">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -238,32 +238,32 @@
       <span>
         <label for="num1">Enter string1</label>
         <input
-          class="inputResult js-repValue1"
+          class="inputResult js-value1"
           id="num1"
           type="text">
       </span>
       <span>
         <label for="num2">Enter string2</label>
         <input
-          class="inputResult js-repValue2"
+          class="inputResult js-value2"
           id="num2"
           type="text">
       </span>
       <span>
-        <input class="inputResult js-submit-rep" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-rep">
       <span>
-        <label class="js-error-rep" for="">Result</label>
-        <h5 class="inputResult js-result-rep"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} check for repeat count {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="repC">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -272,32 +272,32 @@
       <span>
         <label for="num1">Enter string1</label>
         <input
-          class="inputResult js-repCValue1"
+          class="inputResult js-value1"
           id="num1"
           type="text">
       </span>
       <span>
         <label for="num2">Enter string2</label>
         <input
-          class="inputResult js-repCValue2"
+          class="inputResult js-value2"
           id="num2"
           type="text">
       </span>
       <span>
-        <input class="inputResult js-submit-repC" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
 
     </div>
     <div class="dom__outputBlock js-op_block-repC">
       <span>
-        <label class="js-error-repC" for="">Result</label>
-        <h5 class="inputResult js-result-repC"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} check for reverse str {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="rev">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -306,24 +306,24 @@
       <span>
         <label for="num1">Enter a string</label>
         <input
-          class="inputResult js-revStrValue1"
+          class="inputResult js-value1"
           id="num1"
           type="text">
       </span>
       <span>
-        <input class="inputResult js-submit-revStr" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
     </div>
     <div class="dom__outputBlock js-op_block-revStr">
       <span>
-        <label class="js-error-revStr" for="">Result</label>
-        <h5 class="inputResult js-result-revStr"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} email validation {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="em">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -332,24 +332,24 @@
       <span>
         <label for="num1">Enter a string</label>
         <input
-          class="inputResult js-emValue1"
+          class="inputResult js-value1"
           id="num1"
           type="email">
       </span>
       <span>
-        <input class="inputResult js-submit-em" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
     </div>
     <div class="dom__outputBlock js-op_block-em">
       <span>
-        <label class="js-error-em" for="">Result</label>
-        <h5 class="inputResult js-result-em"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
     </div>
   </div>
 </div>
 {% comment %} str checker {% endcomment %}
-<div class="dom__container">
+<div class="dom__container" id="strCheck">
   <div class="dom__wrapper">
     <div class="dom__inputBlock">
       <div class="dom__header">
@@ -364,18 +364,18 @@
       <span>
         <label for="num1">Enter a string</label>
         <input
-          class="inputResult js-strCheckValue1"
+          class="inputResult js-value1"
           id="num1"
           type="email">
       </span>
       <span>
-        <input class="inputResult js-submit-strCheck" type="submit">
+        <input class="inputResult js-submit" type="submit">
       </span>
     </div>
     <div class="dom__outputBlock js-op_block-strCheck">
       <span>
-        <label class="js-error-strCheck" for="">Result</label>
-        <h5 class="inputResult js-result-strCheck"></h5>
+        <label class="js-error" for="">Result</label>
+        <h5 class="inputResult js-result"></h5>
       </span>
       <p class=" js-result-strCheckerror">
       </p>
