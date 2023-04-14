@@ -185,10 +185,10 @@ export const domExcercise = () => {
     {
       name: 'strCheck',
       container: 'js-op_block-strCheck',
-      error: 'js-error',
-      sumit: 'js-submit',
-      value1: 'js-value1',
-      finalResult: 'js-result',
+      error: globalDeclarations.error,
+      sumit: globalDeclarations.sumit,
+      value1:globalDeclarations.value1,
+      finalResult: globalDeclarations.finalResult,
       outputFun (value1) { 
         const errorCheck = document.querySelector(".js-result-strCheckerror")
         const errorArr =[]
@@ -219,6 +219,25 @@ export const domExcercise = () => {
         return errorArr
       }
     },
+    //show time
+    {
+      name: 'time',
+      container: 'js-op_block-time',
+      error: globalDeclarations.error,
+      sumit: globalDeclarations.sumit,
+      value1:globalDeclarations.value1,
+      finalResult: globalDeclarations.finalResult,
+      outputFun () { 
+        let  timeValue = new Date()
+        let hours = timeValue.getHours()
+        let minutes = timeValue.getMinutes()
+        let seconds = timeValue.getSeconds()
+        let format = (hours <10?'0'+hours:hours)+":"+
+        (minutes <10?'0'+minutes:minutes)+":"+(seconds <10?'0'+seconds:seconds)
+        return format
+      }
+    },
+    //add input fields
   ]
   //creating looping to target each modules
   calculationFunctions.forEach(res => {
@@ -246,8 +265,12 @@ export const domExcercise = () => {
         }
         result.innerHTML = res.outputFun(num1)
       }
+      else{
+        result.innerHTML = res.outputFun()
+      }
     })
   })
+  
   //error handling
   function errorState(container) {
     container.classList.remove('success')
@@ -298,6 +321,8 @@ export const domExcercise = () => {
     return false
   }
 }
+
+
 domExcercise()
   
   

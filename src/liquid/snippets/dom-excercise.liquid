@@ -1,385 +1,408 @@
 {% comment %} add {% endcomment %}
 <div class="dom__mainContainer">
-<div class="dom__container" id="add">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two numbers and returns the sum of these numbers</p>
-      </div>
+  <div class="dom__container" id="add">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and returns the sum of these numbers</p>
+        </div>
+          <span>
+            <label for="sum1">Number1 interger</label>
+            <input
+              class="inputResult js-value1"
+              id="sum1"
+              type="number" onkeydown="return event.keyCode !== 69">
+          </span>
+          <span>
+            <label for="sum2">Number2 interger</label>
+            <input
+              class="inputResult js-value2"
+              id="sum2"
+              type="number"onkeydown="return event.keyCode !== 69">
+          </span>
         <span>
-          <label for="sum1">Number1 interger</label>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-add">
+        <span>
+          <label class="js-error">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% comment %} sub {% endcomment %}
+  <div class="dom__container" id="sub">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and returns the difference of these numbers</p>
+        </div>
+        <span>
+          <label for="dif1">Number1 interger</label>
           <input
             class="inputResult js-value1"
-            id="sum1"
-            type="number" onkeydown="return event.keyCode !== 69">
-        </span>
-        <span>
-          <label for="sum2">Number2 interger</label>
-          <input
-            class="inputResult js-value2"
-            id="sum2"
+            id="dif1"
             type="number"onkeydown="return event.keyCode !== 69">
         </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
-    </div>
-    <div class="dom__outputBlock js-op_block-add">
-      <span>
-        <label class="js-error">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+        <span>
+          <label for="dif2">Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="dif2"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-sub">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} sub {% endcomment %}
-<div class="dom__container" id="sub">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two numbers and returns the difference of these numbers</p>
-      </div>
-      <span>
-        <label for="dif1">Number1 interger</label>
-        <input
-          class="inputResult js-value1"
-          id="dif1"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <label for="dif2">Number2 interger</label>
-        <input
-          class="inputResult js-value2"
-          id="dif2"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
-    </div>
-    <div class="dom__outputBlock js-op_block-sub">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
-    </div>
-  </div>
-</div>
-{% comment %} mul {% endcomment %}
-<div class="dom__container" id="mul">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two numbers and returns the product of these numbers</p>
-      </div>
-      <span>
-        <label for="mul1">Number1 interger</label>
-        <input
-          class="inputResult js-value1"
-          id="mul1"
-          type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <label for="mul2">Number2 interger</label>
-        <input
-          class="inputResult js-value2"
-          id="mul2"
-          type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} mul {% endcomment %}
+  <div class="dom__container" id="mul">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and returns the product of these numbers</p>
+        </div>
+        <span>
+          <label for="mul1">Number1 interger</label>
+          <input
+            class="inputResult js-value1"
+            id="mul1"
+            type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <label for="mul2">Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="mul2"
+            type="number"onkeydown="return event.keyCode !== 69"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-mul">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-mul">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} div{% endcomment %}
-<div class="dom__container" id="div">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two numbers and returns the quotient of these numbers</p>
-      </div>
-      <span>
-        <label for="div1">Number1 interger</label>
-        <input
-          class="inputResult js-value1"
-          id="div1"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <label for="div2">Number2 interger</label>
-        <input
-          class="inputResult js-value2"
-          id="div2"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} div{% endcomment %}
+  <div class="dom__container" id="div">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and returns the quotient of these numbers</p>
+        </div>
+        <span>
+          <label for="div1">Number1 interger</label>
+          <input
+            class="inputResult js-value1"
+            id="div1"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <label for="div2">Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="div2"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-div">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-div">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} random {% endcomment %}
-<div class="dom__container" id="ran">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two numbers and returns the random of these numbers</p>
-      </div>
-      <span>
-        <label for="num1">Minimum Number1 interger</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <label for="num2">Maximum Number2 interger</label>
-        <input
-          class="inputResult js-value2"
-          id="num2"
-          type="number"onkeydown="return event.keyCode !== 69">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} random {% endcomment %}
+  <div class="dom__container" id="ran">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and returns the random of these numbers</p>
+        </div>
+        <span>
+          <label for="num1">Minimum Number1 interger</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <label for="num2">Maximum Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-ran">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result" id="result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-ran">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result" id="result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} num of character {% endcomment %}
-<div class="dom__container" id="str">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes takes a string and returns the number of characters in the string</p>
-      </div>
-      <span>
-        <label for="num1">Enter a string</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="text">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} num of character {% endcomment %}
+  <div class="dom__container" id="str">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes takes a string and returns the number of characters in the string</p>
+        </div>
+        <span>
+          <label for="num1">Enter a string</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-str">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-str">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} add 2 strings {% endcomment %}
-<div class="dom__container" id="con">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>This module takes two strings and returns a combination of the two strings</p>
-      </div>
-      <span>
-        <label for="num1">Enter string1</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="text">
-      </span>
-      <span>
-        <label for="num2">Enter string2</label>
-        <input
-          class="inputResult js-value2"
-          id="num2"
-          type="text">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} add 2 strings {% endcomment %}
+  <div class="dom__container" id="con">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two strings and returns a combination of the two strings</p>
+        </div>
+        <span>
+          <label for="num1">Enter string1</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <label for="num2">Enter string2</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-con">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-con">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} check for repeat {% endcomment %}
-<div class="dom__container" id="rep">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>takes two strings, and returns true/false based on if the second string exists inside the first string</p>
-      </div>
-      <span>
-        <label for="num1">Enter string1</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="text">
-      </span>
-      <span>
-        <label for="num2">Enter string2</label>
-        <input
-          class="inputResult js-value2"
-          id="num2"
-          type="text">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} check for repeat {% endcomment %}
+  <div class="dom__container" id="rep">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>takes two strings, and returns true/false based on if the second string exists inside the first string</p>
+        </div>
+        <span>
+          <label for="num1">Enter string1</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <label for="num2">Enter string2</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-rep">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-rep">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
-</div>
-{% comment %} check for repeat count {% endcomment %}
-<div class="dom__container" id="repC">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>The module takes two strings, and returns the number of times that the second string is found in the first one</p>
-      </div>
-      <span>
-        <label for="num1">Enter string1</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="text">
-      </span>
-      <span>
-        <label for="num2">Enter string2</label>
-        <input
-          class="inputResult js-value2"
-          id="num2"
-          type="text">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
+  {% comment %} check for repeat count {% endcomment %}
+  <div class="dom__container" id="repC">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module takes two strings, and returns the number of times that the second string is found in the first one</p>
+        </div>
+        <span>
+          <label for="num1">Enter string1</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <label for="num2">Enter string2</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
 
-    </div>
-    <div class="dom__outputBlock js-op_block-repC">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
-    </div>
-  </div>
-</div>
-{% comment %} check for reverse str {% endcomment %}
-<div class="dom__container" id="rev">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>The module takes one string, and returns the string reversed</p>
       </div>
-      <span>
-        <label for="num1">Enter a string</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="text">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
-    </div>
-    <div class="dom__outputBlock js-op_block-revStr">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
-    </div>
-  </div>
-</div>
-{% comment %} email validation {% endcomment %}
-<div class="dom__container" id="em">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>The module takes one string, and checks if it's a valid email address</p>
+      <div class="dom__outputBlock js-op_block-repC">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
       </div>
-      <span>
-        <label for="num1">Enter a string</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="email">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
-    </div>
-    <div class="dom__outputBlock js-op_block-em">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
     </div>
   </div>
-</div>
-{% comment %} str checker {% endcomment %}
-<div class="dom__container" id="strCheck">
-  <div class="dom__wrapper">
-    <div class="dom__inputBlock">
-      <div class="dom__header">
-        <p>The module  that takes one string, if it passes some rules</p>
-        <ul>
-          <li>The string needs to be at least 10 characters long</li>
-          <li>The string needs to include at least one uppercase character</li>
-          <li>The string needs to include at least on lowercase character</li>
-          <li>The string needs to include at least one number</li>
-        </ul>
+  {% comment %} check for reverse str {% endcomment %}
+  <div class="dom__container" id="rev">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module takes one string, and returns the string reversed</p>
+        </div>
+        <span>
+          <label for="num1">Enter a string</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
       </div>
-      <span>
-        <label for="num1">Enter a string</label>
-        <input
-          class="inputResult js-value1"
-          id="num1"
-          type="email">
-      </span>
-      <span>
-        <input class="inputResult js-submit" type="submit">
-      </span>
-    </div>
-    <div class="dom__outputBlock js-op_block-strCheck">
-      <span>
-        <label class="js-error" for="">Result</label>
-        <h5 class="inputResult js-result"></h5>
-      </span>
-      <p class=" js-result-strCheckerror">
-      </p>
+      <div class="dom__outputBlock js-op_block-revStr">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
     </div>
   </div>
+  {% comment %} email validation {% endcomment %}
+  <div class="dom__container" id="em">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module takes one string, and checks if it's a valid email address</p>
+        </div>
+        <span>
+          <label for="num1">Enter a string</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="email">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-em">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% comment %} str checker {% endcomment %}
+  <div class="dom__container" id="strCheck">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module  that takes one string, if it passes some rules</p>
+          <ul>
+            <li>The string needs to be at least 10 characters long</li>
+            <li>The string needs to include at least one uppercase character</li>
+            <li>The string needs to include at least on lowercase character</li>
+            <li>The string needs to include at least one number</li>
+          </ul>
+        </div>
+        <span>
+          <label for="num1">Enter a string</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="email">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-strCheck">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+        <p class=" js-result-strCheckerror">
+        </p>
+      </div>
+    </div>
+  </div>
+  {% comment %} time {% endcomment %}
+  <div class="dom__container" id="time">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module that display the current time</p>
+        </div>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-time">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result"></h5>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% comment %} add input field {% endcomment %}
+
 </div>
-</div>
+
+
