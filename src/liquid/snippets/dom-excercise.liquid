@@ -402,7 +402,76 @@
     </div>
   </div>
   {% comment %} add input field {% endcomment %}
-
+  <div class="dom__container" id="newField">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module that creates new input fields and show the value.</p>
+        </div>
+        <span>
+          <label id="num1">Name</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <form id="myForm">
+          <button type="button" class="js-addButton">Add inputField</button>
+        </form>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-newField">
+        <span>
+          <label class="js-error">Result</label>
+          <ul id="list"></ul>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% comment %} time,entry,name {% endcomment %}
+  <div class="dom__container" id="TEN">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module that display Time, Name, and Entry</p>
+        </div>
+        <span>
+          <label id="num1">Name</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="text">
+        </span>
+        <span>
+          <label id="num2">Entry</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="text">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-TEN">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <table class="js-result">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Entry</th>
+              </tr>
+            </thead>
+            <tbody class="table-block"></tbody>
+          </table>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 

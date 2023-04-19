@@ -1,4 +1,3 @@
-
 export const domExcercise = () => {
   const globalDeclarations={
      value1: 'js-value1',
@@ -70,13 +69,7 @@ export const domExcercise = () => {
       value2:globalDeclarations.value2,
       finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
-        if (value1 > value2) {
-          const error = document.querySelector('.js-error-ran') 
-          error.innerHTML="Not valid"
-          value1=""
-          value2=""
-          errorState(container)
-        }
+        
         return Math.floor(Math.random() * (value2 - value1 + 1) + value1)
       }
     },
@@ -228,16 +221,47 @@ export const domExcercise = () => {
       value1:globalDeclarations.value1,
       finalResult: globalDeclarations.finalResult,
       outputFun () { 
-        let  timeValue = new Date()
-        let hours = timeValue.getHours()
-        let minutes = timeValue.getMinutes()
-        let seconds = timeValue.getSeconds()
-        let format = (hours <10?'0'+hours:hours)+":"+
+        const timeValue = new Date()
+        const hours = timeValue.getHours()
+        const minutes = timeValue.getMinutes()
+        const seconds = timeValue.getSeconds()
+        const format = (hours <10?'0'+hours:hours)+":"+
         (minutes <10?'0'+minutes:minutes)+":"+(seconds <10?'0'+seconds:seconds)
         return format
       }
     },
     //add input fields
+    {
+      name: 'newField',
+      container: 'js-op_block-newField',
+      error: globalDeclarations.error,
+      sumit: globalDeclarations.sumit,
+      value1:globalDeclarations.value1,
+      finalResult: globalDeclarations.finalResult,
+      test(){
+        const button = document.querySelector('.js-addButton')
+        button.addEventListener('click',()=>{
+          console.log('hel')
+        })
+      },
+      outputFun () { 
+        test()
+        return true
+      }
+    },
+     //time,entry,name
+     {
+      name: 'TEN',
+      container: 'js-op_block-TEN',  
+      value1: globalDeclarations.value1,
+      value2: globalDeclarations.value2, 
+      error: globalDeclarations.error,
+      sumit: globalDeclarations.sumit,
+      finalResult: globalDeclarations.finalResult,
+      outputFun(){
+        return true
+      }
+    },
   ]
   //creating looping to target each modules
   calculationFunctions.forEach(res => {
@@ -250,6 +274,33 @@ export const domExcercise = () => {
     const error = parent.querySelector(`.${res.error}`)
     
     submit.addEventListener("click", () => {
+      if (`${res.name}`==="newField") {
+        
+       
+      }
+      //for name,entry and time task
+      if (`${res.name}`==="TEN") {
+        const num1 = value1.value
+        const num2 = value2.value
+        const table = document.querySelector('.table-block')
+        const now = new Date()
+        const time = now.toLocaleTimeString() 
+        const row = document.createElement('tr')
+        const errorEmptyFields = "Provide input for both the fields"
+        row.innerHTML = `<td>${time}</td><td>${num1}</td><td>${num2}</td>`
+        table.appendChild(row);
+        if (errorHandleInputs(num1,num2,error,container,result)) {
+          return
+        }
+        if(num1 == "" || num2 == ""){
+          error.innerHTML = errorEmptyFields
+          container.classList.remove('success')
+          container.classList.add('errors')
+          row.remove()
+        }
+        return value1.value,value2.value
+      }
+      //end
       if (value1 && value2) {
         const num1 = value1.value || 0 
         const num2 = value2.value || 0 
@@ -267,10 +318,10 @@ export const domExcercise = () => {
       }
       else{
         result.innerHTML = res.outputFun()
+        successState(container)
       }
     })
   })
-  
   //error handling
   function errorState(container) {
     container.classList.remove('success')
@@ -303,6 +354,16 @@ export const domExcercise = () => {
     if (num1 && num2) {
       successState(container)
     }
+    if (typeof num1 === 'string' > typeof num2 === 'string') {
+      errorState(container)
+      error.innerHTML="Not valid"
+      num1.value=''
+      num2.value='' 
+    }
+    if (typeof num1 === 'string' && typeof num2 === 'string') {
+      num1=''
+      num2='' 
+    }
     res.classList.add('block')
     error.innerHTML = "Result"
     return false
@@ -321,8 +382,6 @@ export const domExcercise = () => {
     return false
   }
 }
-
-
 domExcercise()
   
   
