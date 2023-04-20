@@ -401,35 +401,7 @@
       </div>
     </div>
   </div>
-  {% comment %} add input field {% endcomment %}
-  <div class="dom__container" id="newField">
-    <div class="dom__wrapper">
-      <div class="dom__inputBlock">
-        <div class="dom__header">
-          <p>The module that creates new input fields and show the value.</p>
-        </div>
-        <span>
-          <label id="num1">Name</label>
-          <input
-            class="inputResult js-value1"
-            id="num1"
-            type="text">
-        </span>
-        <form id="myForm">
-          <button type="button" class="js-addButton">Add inputField</button>
-        </form>
-        <span>
-          <input class="inputResult js-submit" type="submit">
-        </span>
-      </div>
-      <div class="dom__outputBlock js-op_block-newField">
-        <span>
-          <label class="js-error">Result</label>
-          <ul id="list"></ul>
-        </span>
-      </div>
-    </div>
-  </div>
+
   {% comment %} time,entry,name {% endcomment %}
   <div class="dom__container" id="TEN">
     <div class="dom__wrapper">
@@ -472,6 +444,35 @@
       </div>
     </div>
   </div>
+  {% comment %} add input field {% endcomment %}
+  <div class="dom__container" id="newField">
+    <form class="dom__wrapper js-form">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module creates new input fields and show the value.</p>
+        </div>
+        <div class="input-field_container">
+          <input
+            class="inputResult js-value-1"
+            id="num1"
+            type="text">
+        </div>
+        <div>
+          <button type="button" class="js-addButton">Add inputField</button>
+        </div>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-newField">
+        <span>
+          <label class="js-error">Result</label>
+          <ul class="js-entry-list"></ul>
+        </span>
+      </div>
+    </form>
+  </div>
 </div>
+  
 
 

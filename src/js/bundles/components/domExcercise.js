@@ -69,8 +69,11 @@ export const domExcercise = () => {
       value2:globalDeclarations.value2,
       finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
-        
-        return Math.floor(Math.random() * (value2 - value1 + 1) + value1)
+        let random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
+        while (random === 0) {
+          random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
+        }
+        return random
       }
     },
     //count str
@@ -182,6 +185,7 @@ export const domExcercise = () => {
       sumit: globalDeclarations.sumit,
       value1:globalDeclarations.value1,
       finalResult: globalDeclarations.finalResult,
+      listResult:'js-result-strCheckerror',
       outputFun (value1) { 
         const errorCheck = document.querySelector(".js-result-strCheckerror")
         const errorArr =[]
@@ -209,7 +213,12 @@ export const domExcercise = () => {
           return true
         }
         errorCheck.innerHTML=""
-        return errorArr
+        if (errorArr.length) {
+          const cont = document.querySelector('.js-op_block-strCheck')
+          cont.classList.remove('success')
+          cont.classList.add('errors')
+        }
+        return errorArr.join("")
       }
     },
     //show time
@@ -236,16 +245,8 @@ export const domExcercise = () => {
       container: 'js-op_block-newField',
       error: globalDeclarations.error,
       sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
       finalResult: globalDeclarations.finalResult,
-      test(){
-        const button = document.querySelector('.js-addButton')
-        button.addEventListener('click',()=>{
-          console.log('hel')
-        })
-      },
       outputFun () { 
-        test()
         return true
       }
     },
@@ -272,12 +273,36 @@ export const domExcercise = () => {
     const value2 = parent.querySelector(`.${res.value2}`)
     const result = parent.querySelector(`.${res.finalResult}`)
     const error = parent.querySelector(`.${res.error}`)
-    
+    const listError = parent.querySelector(`.${res.listResult}`)
+
+    if (`${res.name}`==="newField") {
+      const addField = document.querySelector('.js-addButton')
+      const inputFieldContainer = document.querySelector('.input-field_container')
+      const entryList = document.querySelector('.js-entry-list')
+      const form = document.querySelector('.js-form')
+      
+      let countValue = 1;
+      addField.addEventListener('click',()=>{
+        countValue++
+        const createField = document.createElement('input');
+        createField.type = 'text';
+        createField.className = `inputResult js-value-${countValue}`;
+        createField.id = `field-${countValue}`;
+        inputFieldContainer.appendChild(createField)
+      })
+      form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        entryList.innerHTML = '';
+        for (let i = 1; i <= countValue; i++) {
+          const value1 = document.querySelector(`.js-value-${i}`)
+          const result = value1.value
+          const list = document.createElement('li')
+          list.innerText = `field-${i} - ${result}`
+          entryList.appendChild(list)
+        }
+      })
+    }
     submit.addEventListener("click", () => {
-      if (`${res.name}`==="newField") {
-        
-       
-      }
       //for name,entry and time task
       if (`${res.name}`==="TEN") {
         const num1 = value1.value
@@ -309,7 +334,14 @@ export const domExcercise = () => {
         }
         result.innerHTML = res.outputFun(num1,num2)
       }
-      else if (value1) {
+      // if (`${res.name}`==="strCheck") {
+      //   const num1 = value1.value || ""
+      //   if (errorHandleInput(num1,error,container,listError)) {
+      //     return
+      //   }
+      //   listError.innerHTML = res.outputFun(num1)
+      // }
+       else if (value1) {
         const num1 = value1.value || ""
         if (errorHandleInput(num1,error,container,result)) {
           return
