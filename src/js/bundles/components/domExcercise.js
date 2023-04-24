@@ -5,17 +5,13 @@ export const domExcercise = () => {
      error: 'js-error',
      sumit: 'js-submit',
      finalResult: 'js-result',
+     listErrors:'js-result-strCheckerror',
   }
   const calculationFunctions = [
     //add
     {
       name: 'add',
       container: 'js-op_block-add',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun(value1, value2){
         return parseInt(value1) + parseInt(value2)
       }
@@ -24,11 +20,6 @@ export const domExcercise = () => {
     {
       name: 'sub',
       container: 'js-op_block-sub',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) {
         return parseInt(value1) - parseInt(value2)
       }
@@ -37,12 +28,8 @@ export const domExcercise = () => {
     {
       name: 'mul',
       container: 'js-op_block-mul',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2){ 
+       
         return parseInt(value1) * parseInt(value2)
       }
     },
@@ -50,12 +37,8 @@ export const domExcercise = () => {
     {
       name: 'div',
       container: 'js-op_block-div',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
+        test(value1,value2)
         return value1 / value2
       }
     },
@@ -63,12 +46,18 @@ export const domExcercise = () => {
     {
       name: 'ran',
       container: 'js-op_block-ran',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
-      outputFun (value1, value2) { 
+      outputFun (value1, value2) {
+        const blockCont =  document.querySelector('.js-op_block-ran')
+        if (value1 > value2) {
+          console.log('hi')
+          const error = document.querySelector('.js-error') 
+          error.innerHTML="Not valid"
+          const result = error.innerHTML
+          blockCont.classList.remove('success')
+          blockCont.classList.add('error')
+          return result
+          
+        }
         let random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
         while (random === 0) {
           random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
@@ -80,11 +69,6 @@ export const domExcercise = () => {
     {
       name: 'str',
       container: 'js-op_block-str',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1) { 
         return value1.length
     }
@@ -93,11 +77,6 @@ export const domExcercise = () => {
     {
       name: 'con',
       container: 'js-op_block-con',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
         return value1.concat(value2)
     }
@@ -106,11 +85,6 @@ export const domExcercise = () => {
     {
       name: 'rep',
       container: 'js-op_block-rep',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
         if (value1.includes(value2)) {
           return true
@@ -125,11 +99,6 @@ export const domExcercise = () => {
     {
       name: 'repC',
       container: 'js-op_block-repC',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1, value2) { 
         const reg = new RegExp(value2,"g")
           const count = (value1.match(reg)|| []).length
@@ -140,11 +109,6 @@ export const domExcercise = () => {
     {
       name: 'rev',
       container: 'js-op_block-revStr',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1) { 
         const arr = value1.split("")
         const rev = arr.reverse()
@@ -156,11 +120,6 @@ export const domExcercise = () => {
     {
       name: 'em',
       container: 'js-op_block-em',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      value2:globalDeclarations.value2,
-      finalResult: globalDeclarations.finalResult,
       outputFun (value1) { 
         const regValue = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         function errorState() {
@@ -181,11 +140,6 @@ export const domExcercise = () => {
     {
       name: 'strCheck',
       container: 'js-op_block-strCheck',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      finalResult: globalDeclarations.finalResult,
-      listResult:'js-result-strCheckerror',
       outputFun (value1) { 
         const errorCheck = document.querySelector(".js-result-strCheckerror")
         const errorArr =[]
@@ -225,10 +179,6 @@ export const domExcercise = () => {
     {
       name: 'time',
       container: 'js-op_block-time',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      value1:globalDeclarations.value1,
-      finalResult: globalDeclarations.finalResult,
       outputFun () { 
         const timeValue = new Date()
         const hours = timeValue.getHours()
@@ -243,9 +193,6 @@ export const domExcercise = () => {
     {
       name: 'newField',
       container: 'js-op_block-newField',
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      finalResult: globalDeclarations.finalResult,
       outputFun () { 
         return true
       }
@@ -253,12 +200,7 @@ export const domExcercise = () => {
      //time,entry,name
      {
       name: 'TEN',
-      container: 'js-op_block-TEN',  
-      value1: globalDeclarations.value1,
-      value2: globalDeclarations.value2, 
-      error: globalDeclarations.error,
-      sumit: globalDeclarations.sumit,
-      finalResult: globalDeclarations.finalResult,
+      container: 'js-op_block-TEN',
       outputFun(){
         return true
       }
@@ -268,13 +210,13 @@ export const domExcercise = () => {
   calculationFunctions.forEach(res => {
     const container = document.querySelector(`.${res.container}`)
     const parent = document.getElementById(`${res.name}`)
-    const submit = parent.querySelector(`.${res.sumit}`)
-    const value1 = parent.querySelector(`.${res.value1}`)
-    const value2 = parent.querySelector(`.${res.value2}`)
-    const result = parent.querySelector(`.${res.finalResult}`)
-    const error = parent.querySelector(`.${res.error}`)
-    const listError = parent.querySelector(`.${res.listResult}`)
-
+    const submit = parent.querySelector(`.${globalDeclarations.sumit}`)
+    const value1 = parent.querySelector(`.${globalDeclarations.value1}`)
+    const value2 = parent.querySelector(`.${globalDeclarations.value2}`)
+    const result = parent.querySelector(`.${globalDeclarations.finalResult}`)
+    const error = parent.querySelector(`.${globalDeclarations.error}`)
+    const listError = parent.querySelector(`.${globalDeclarations.listErrors}`)
+    //for adding new i/p field dynamically
     if (`${res.name}`==="newField") {
       const addField = document.querySelector('.js-addButton')
       const inputFieldContainer = document.querySelector('.input-field_container')
@@ -302,6 +244,9 @@ export const domExcercise = () => {
         }
       })
     }
+    if (`${res.name}`!=="strCheck") {
+      
+    
     submit.addEventListener("click", () => {
       //for name,entry and time task
       if (`${res.name}`==="TEN") {
@@ -314,7 +259,7 @@ export const domExcercise = () => {
         const errorEmptyFields = "Provide input for both the fields"
         row.innerHTML = `<td>${time}</td><td>${num1}</td><td>${num2}</td>`
         table.appendChild(row);
-        if (errorHandleInputs(num1,num2,error,container,result)) {
+        if (errorHandleInputs(num1,num2,error,container,result,row)) {
           return
         }
         if(num1 == "" || num2 == ""){
@@ -326,6 +271,7 @@ export const domExcercise = () => {
         return value1.value,value2.value
       }
       //end
+      
       if (value1 && value2) {
         const num1 = value1.value || 0 
         const num2 = value2.value || 0 
@@ -334,13 +280,6 @@ export const domExcercise = () => {
         }
         result.innerHTML = res.outputFun(num1,num2)
       }
-      // if (`${res.name}`==="strCheck") {
-      //   const num1 = value1.value || ""
-      //   if (errorHandleInput(num1,error,container,listError)) {
-      //     return
-      //   }
-      //   listError.innerHTML = res.outputFun(num1)
-      // }
        else if (value1) {
         const num1 = value1.value || ""
         if (errorHandleInput(num1,error,container,result)) {
@@ -353,55 +292,93 @@ export const domExcercise = () => {
         successState(container)
       }
     })
-  })
-  //error handling
-  function errorState(container) {
-    container.classList.remove('success')
-    container.classList.add('error')
   }
-  function successState(container) {
-    container.classList.remove('error')
-    container.classList.add('success')
+  if (`${res.name}`==="strCheck") {
+    submit.addEventListener('click',()=>{
+      const num1 = value1.value || ""
+      if (errorHandleInputEmail(num1,error,container,result)) {
+        return
+      }
+      if (listError) {
+        listError.innerHTML = res.outputFun(num1)
+      }  
+      result.style.display="none"
+    })
   }
-  function hideBlock(res) {
-    res.classList.add('none')
+})
+//error handling
+function test(v1,v2){
+  const blockCont =  document.querySelector('.js-op_block-mul')
+  if (v1.length && v2 == '') {
+    const error = document.querySelector('.js-error') 
+    error.innerHTML="Not valid"
+    const result = error.innerHTML
+    blockCont.classList.remove('success')
+    blockCont.classList.add('error')
+    return result
+  }
+}
+function errorState(container) {
+  container.classList.remove('success')
+  container.classList.add('error')
+}
+function successState(container) {
+  container.classList.remove('error')
+  container.classList.add('success')
+}
+function hideBlock(res) {
+  res.classList.add('none')
+  res.classList.remove('block')
+}
+function showBlock(res) {
+  res.classList.add('block')
+  res.classList.remove('none')
+}
+function errorHandleInputs(num1, num2, error, container, res,row) {
+  const errorEmptyFields = "Please input both numbers"
+  if (num1 == "" && num2 == "") {
+    error.innerHTML = errorEmptyFields
     res.classList.remove('block')
+    res.classList.add('none')
+    errorState(container)
+    row.remove()
+    return true
   }
-  function showBlock(res) {
-    res.classList.add('block')
-    res.classList.remove('none')
+  if (num1 == "" || num2 == "") {
+    successState(container)
   }
-  function errorHandleInputs(num1, num2, error, container, res) {
-    const errorEmptyFields = "Please input both numbers"
-    if (num1 == "" && num2 == "") {
-      error.innerHTML = errorEmptyFields
-      res.classList.remove('block')
-      res.classList.add('none')
-      errorState(container)
-      return true
-    }
-    if (num1 == "" || num2 == "") {
-      successState(container)
-    }
-    if (num1 && num2) {
-      successState(container)
-    }
-    if (typeof num1 === 'string' > typeof num2 === 'string') {
-      errorState(container)
-      error.innerHTML="Not valid"
-      num1.value=''
-      num2.value='' 
-    }
-    if (typeof num1 === 'string' && typeof num2 === 'string') {
-      num1=''
-      num2='' 
-    }
-    res.classList.add('block')
-    error.innerHTML = "Result"
-    return false
+  if (num1 && num2) {
+    successState(container)
   }
-  function errorHandleInput(num1, error, container, res) {
-    const errorEmptyField2 = "Input field cannot be empty"
+  if (typeof num1 === 'string' > typeof num2 === 'string') {
+    errorState(container)
+    error.innerHTML="Not valid"
+    num1.value=''
+    num2.value='' 
+  }
+  if (typeof num1 == 'string' && typeof num2 == 'string') {
+    num1=''
+    num2='' 
+  }
+  res.classList.add('block')
+  error.innerHTML = "Result"
+  return false
+}
+function errorHandleInput(num1, error, container, res) {
+  const errorEmptyField2 = "Input field cannot be empty"
+  if(num1 == ""){
+    error.textContent = errorEmptyField2
+    errorState(container)
+    hideBlock(res)
+    return true
+  }
+  error.innerHTML="Result"
+  showBlock(res)
+  successState(container)
+  return false
+}
+function errorHandleInputEmail(num1, error, container, res) {
+  const errorEmptyField2 = "Input field cannot be empty"
     if(num1 == ""){
       error.textContent = errorEmptyField2
       errorState(container)
@@ -412,8 +389,6 @@ export const domExcercise = () => {
     showBlock(res)
     successState(container)
     return false
-  }
+  } 
 }
 domExcercise()
-  
-  
