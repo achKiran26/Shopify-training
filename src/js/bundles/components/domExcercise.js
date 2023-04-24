@@ -29,7 +29,15 @@ export const domExcercise = () => {
       name: 'mul',
       container: 'js-op_block-mul',
       outputFun (value1, value2){ 
-       
+        const blockCont =  document.querySelector('.js-op_block-mul')
+        if (value1.length && value2 == '') {
+          const error = document.querySelector('.js-error') 
+          error.innerHTML="Not valid"
+          const result = error.innerHTML
+          blockCont.classList.remove('success')
+          blockCont.classList.add('error')
+          return result
+        }
         return parseInt(value1) * parseInt(value2)
       }
     },
@@ -38,7 +46,15 @@ export const domExcercise = () => {
       name: 'div',
       container: 'js-op_block-div',
       outputFun (value1, value2) { 
-        test(value1,value2)
+        const blockCont =  document.querySelector('.js-op_block-div')
+        if (value1.length && value2 == '') {
+          const error = document.querySelector('.js-error') 
+          error.innerHTML="Not valid"
+          const result = error.innerHTML
+          blockCont.classList.remove('success')
+          blockCont.classList.add('error')
+          return result
+        }
         return value1 / value2
       }
     },
@@ -307,17 +323,6 @@ export const domExcercise = () => {
   }
 })
 //error handling
-function test(v1,v2){
-  const blockCont =  document.querySelector('.js-op_block-mul')
-  if (v1.length && v2 == '') {
-    const error = document.querySelector('.js-error') 
-    error.innerHTML="Not valid"
-    const result = error.innerHTML
-    blockCont.classList.remove('success')
-    blockCont.classList.add('error')
-    return result
-  }
-}
 function errorState(container) {
   container.classList.remove('success')
   container.classList.add('error')
