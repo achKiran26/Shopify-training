@@ -472,6 +472,105 @@
       </div>
     </form>
   </div>
+  {% comment %} remove list item {% endcomment %}
+  <div class="dom__container" id="remove">
+    <form class="dom__wrapper js-form-rmv">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module removes the item from the list when clicked.</p>
+        </div>
+        <div class="input-field_container-rmv">
+          <input
+            class="inputResult js-value-rmv-1"
+            id="num1"
+            type="text">
+        </div>
+        <div>
+          <button type="button" class="js-rmvButton">Add inputField</button>
+        </div>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-rmv">
+        <span>
+          <label class="js-error">Result</label>
+          <ul class="js-entry-list-rmv"></ul>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% comment %} random num gen {% endcomment %}
+  <div class="dom__container" id="randomGen">
+    <form class="dom__wrapper js-form-gen">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>The module generates random number when submit field.</p>
+        </div>
+        <div class="input-field_container-gen">
+          <input
+            class="inputResult js-value-gen-1"
+            id="num1"
+            type="text">
+        </div>
+        <div>
+          <button type="button" class="js-genButton">Add inputField</button>
+        </div>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+      </div>
+      <div class="dom__outputBlock js-op_block-gen">
+        <span>
+          <label class="js-error">Result</label>
+          <ul class="js-entry-list-gen"></ul>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% comment %} random num and populate in table with sort {% endcomment %}
+  <div class="dom__container" id="ran">
+    <div class="dom__wrapper">
+      <div class="dom__inputBlock">
+        <div class="dom__header">
+          <p>This module takes two numbers and sorts the random numbers in table</p>
+        </div>
+        <span>
+          <label for="num1"> Number1 interger</label>
+          <input
+            class="inputResult js-value1"
+            id="num1"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <label for="num2"> Number2 interger</label>
+          <input
+            class="inputResult js-value2"
+            id="num2"
+            type="number"onkeydown="return event.keyCode !== 69">
+        </span>
+        <span>
+          <input class="inputResult js-submit" type="submit">
+        </span>
+
+      </div>
+      <div class="dom__outputBlock js-op_block-ranSort">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <h5 class="inputResult js-result" id="result"></h5>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Random</th>
+              <th>Integer</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
   
 

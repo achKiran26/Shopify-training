@@ -65,7 +65,6 @@ export const domExcercise = () => {
       outputFun (value1, value2) {
         const blockCont =  document.querySelector('.js-op_block-ran')
         if (value1 > value2) {
-          console.log('hi')
           const error = document.querySelector('.js-error') 
           error.innerHTML="Not valid"
           const result = error.innerHTML
@@ -213,11 +212,36 @@ export const domExcercise = () => {
         return true
       }
     },
-     //time,entry,name
+    //time,entry,name
      {
       name: 'TEN',
       container: 'js-op_block-TEN',
       outputFun(){
+        return true
+      }
+    },
+    //remove item
+     {
+      name: 'remove',
+      container: 'js-op_block-rmv',
+      outputFun(){
+        return true
+      }
+    },
+    //random generator
+     {
+      name: 'randomGen',
+      container: 'js-op_block-gen',
+      outputFun(){
+        return true
+      }
+    },
+    //random generator and sort in table
+     {
+      name: 'ranSort',
+      container: 'js-op_block-ranSort',
+      outputFun( ){
+        console.log("hi")
         return true
       }
     },
@@ -260,9 +284,75 @@ export const domExcercise = () => {
         }
       })
     }
-    if (`${res.name}`!=="strCheck") {
+    //for removing the items from dom 
+    if (`${res.name}`==="remove") {
+      const addField = document.querySelector('.js-rmvButton')
+      const inputFieldContainer = document.querySelector('.input-field_container-rmv')
+      const entryList = document.querySelector('.js-entry-list-rmv')
+      const form = document.querySelector('.js-form-rmv')
       
-    
+      let countValue = 1;
+      addField.addEventListener('click',()=>{
+        countValue++
+        const createField = document.createElement('input');
+        createField.type = 'text';
+        createField.className = `inputResult js-value-rmv-${countValue}`;
+        createField.id = `field-${countValue}`;
+        inputFieldContainer.appendChild(createField)
+      })
+      form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        entryList.innerHTML = '';
+        for (let i = 1; i <= countValue; i++) {
+          const value1 = document.querySelector(`.js-value-rmv-${i}`)
+          const result = value1.value
+          const list = document.createElement('li')
+          list.className='list-array'
+          list.innerHTML = `field-${i} - ${result}<button class='js-remove-btn'>x</button>`
+          entryList.appendChild(list)
+        }
+      })
+      const removeHandle = (e)=>{
+        const list = e.target.closest('li')
+        list.remove()
+      }
+      entryList.addEventListener('click',(e)=>{
+        if (e.target.classList.contains('js-remove-btn')) {
+          removeHandle(e)
+        }
+      })
+    }
+    //random generate ID
+    if (`${res.name}`==="randomGen") {
+      const addField = document.querySelector('.js-genButton')
+      const inputFieldContainer = document.querySelector('.input-field_container-gen')
+      const entryList = document.querySelector('.js-entry-list-gen')
+      const form = document.querySelector('.js-form-gen')
+      
+      let countValue = 1;
+      addField.addEventListener('click',()=>{
+        countValue++
+        const createField = document.createElement('input');
+        createField.type = 'text';
+        createField.className = `inputResult js-value-gen-${countValue}`;
+        createField.id = `field-${countValue}`;
+        inputFieldContainer.appendChild(createField)
+      })
+      form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        entryList.innerHTML = '';
+        for (let i = 1; i <= countValue; i++) {
+          const value1 = document.querySelector(`.js-value-gen-${i}`)
+          const result = value1.value
+          const id = Math.floor(Math.random()*10000)+1000
+          const list = document.createElement('li')
+          list.innerText = `${id} - field-${i} - ${result}`
+          entryList.appendChild(list)
+        }
+      })
+    }
+    //end
+    if (`${res.name}`!=="strCheck") {
     submit.addEventListener("click", () => {
       //for name,entry and time task
       if (`${res.name}`==="TEN") {
@@ -285,6 +375,19 @@ export const domExcercise = () => {
           row.remove()
         }
         return value1.value,value2.value
+      }
+      //ran gen sort
+      if (`${res.name}`==="ranSort") {
+        console.log("i")
+        // const table = document.querySelector('.table');
+        // const generateRandomNumber = (min, max) => {
+        //   return Math.floor(Math.random() * (max - min + 1)) + min;
+        // };
+        // const addRowToTable = (value) => {
+        //   const row = table.insertRow();
+        //   const cell = row.insertCell();
+        //   cell.textContent = value;
+        // };
       }
       //end
       
