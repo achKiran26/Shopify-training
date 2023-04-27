@@ -30,14 +30,14 @@ export const domExcercise = () => {
       container: 'js-op_block-mul',
       outputFun (value1, value2){ 
         const blockCont =  document.querySelector('.js-op_block-mul')
-        if (value1.length && value2 == '') {
-          const error = document.querySelector('.js-error') 
-          error.innerHTML="Not valid"
-          const result = error.innerHTML
-          blockCont.classList.remove('success')
-          blockCont.classList.add('error')
-          return result
-        }
+        // if (value1.length && value2 == '') {
+        //   const error = document.querySelector('.js-error') 
+        //   error.innerHTML="Not valid"
+        //   const result = error.innerHTML
+        //   blockCont.classList.remove('success')
+        //   blockCont.classList.add('error')
+        //   return result
+        // }
         return parseInt(value1) * parseInt(value2)
       }
     },
@@ -47,14 +47,14 @@ export const domExcercise = () => {
       container: 'js-op_block-div',
       outputFun (value1, value2) { 
         const blockCont =  document.querySelector('.js-op_block-div')
-        if (value1.length && value2 == '') {
-          const error = document.querySelector('.js-error') 
-          error.innerHTML="Not valid"
-          const result = error.innerHTML
-          blockCont.classList.remove('success')
-          blockCont.classList.add('error')
-          return result
-        }
+        // if (value1.length && value2 == '') {
+        //   const error = document.querySelector('.js-error') 
+        //   error.innerHTML="Not valid"
+        //   const result = error.innerHTML
+        //   blockCont.classList.remove('success')
+        //   blockCont.classList.add('error')
+        //   return result
+        // }
         return value1 / value2
       }
     },
@@ -361,31 +361,45 @@ export const domExcercise = () => {
     }
     //random num gen and sort
     if (`${res.name}`==="ranSort"){ 
+      const table = document.querySelector('.js-resTable')
+      const container = document.querySelector('.js-op_block-ranSort')
       //here genrate random number
       const randomGen = (val1, val2) => {
         return Math.floor(Math.random() * (val2 - val1 + 1)) + val1;
-      };
+      }
       //using submit to loop
-      submit.addEventListener('click',(e)=>{
-        e.preventDefault()
-        console.log('clicked')
-        const table = document.querySelector('.js-resTable')
-        const randomNumber = randomGen(parseInt(value1.value),parseInt(value2.value))
-        const row = document.createElement("tr")
-        const dataField = document.createElement("td")
-        const finalRes = document.createTextNode(randomNumber)
-        dataField.appendChild(finalRes)
-        row.appendChild(dataField);
-        table.appendChild(row)
-        const rows = [...table.querySelectorAll("tr")]
-        rows.sort((row1, row2) => {
-          const value1 = parseInt(row1.firstChild.textContent)
-          const value2 = parseInt(row2.firstChild.textContent)
-          return value1 - value2
+      
+          submit.addEventListener('click',(e)=>{
+          e.preventDefault() 
+          if (value1.value == '' && value2.value == '') {
+            table.style.display="none"
+          }else if (value1.value == '' || value2.value == '') {
+            console.log('true')
+            const errorEmptyFields = "Please input both numbers"
+            error.innerHTML = errorEmptyFields
+            
+            table.style.display="none"
+          }
+          else{
+            table.style.display="block"
+          const randomNumber = randomGen(parseInt(value1.value),parseInt(value2.value))
+          const row = document.createElement("tr")
+          const dataField = document.createElement("td")
+          const finalRes = document.createTextNode(randomNumber)
+          dataField.appendChild(finalRes)
+          row.appendChild(dataField)
+          table.appendChild(row)
+          const rows = [...table.querySelectorAll("tr")]
+          rows.sort((row1, row2) => {
+            const value1 = parseInt(row1.firstChild.textContent)
+            const value2 = parseInt(row2.firstChild.textContent)
+            return value1 - value2
+          })
+          rows.forEach((row) => table.appendChild(row)) 
+          }
+          
         })
-        rows.forEach((row) => table.appendChild(row))
-      })
-    }
+        } 
     //end
     if (`${res.name}`!=="strCheck") {
     submit.addEventListener("click", () => {
@@ -412,14 +426,26 @@ export const domExcercise = () => {
         return value1.value,value2.value
       }
       //end
-      
-      if (value1 && value2) {
-        const num1 = value1.value || 0 
-        const num2 = value2.value || 0 
-        if (errorHandleInputs(num1,num2,error,container,result)) {
-          return
+      if (`${res.name}`!=="mul" || `${res.name}`!=="div") {
+        console.log('true')
+        if (value1 && value2) {
+          const num1 = value1.value || 0 
+          const num2 = value2.value || 0 
+          if (errorHandleInputs(num1,num2,error,container,result)) {
+            return
+          }
+          result.innerHTML = res.outputFun(num1,num2)
         }
-        result.innerHTML = res.outputFun(num1,num2)
+      }
+      if (`${res.name}`==="mul" || `${res.name}`==="div") {
+        if (value1 && value2) {
+          const num1 = value1.value 
+          const num2 = value2.value 
+          if (errorHandleInputs(num1,num2,error,container,result)) {
+            return
+          }
+          result.innerHTML = res.outputFun(num1,num2)
+        }
       }
        else if (value1) {
         const num1 = value1.value || ""
@@ -433,20 +459,20 @@ export const domExcercise = () => {
         successState(container)
       }
     })
-  }
-  if (`${res.name}`==="strCheck") {
-    submit.addEventListener('click',()=>{
-      const num1 = value1.value || ""
-      if (errorHandleInputEmail(num1,error,container,result)) {
-        return
-      }
-      if (listError) {
-        listError.innerHTML = res.outputFun(num1)
-      }  
-      result.style.display="none"
-    })
-  }
-})
+    }
+    if (`${res.name}`==="strCheck") {
+      submit.addEventListener('click',()=>{
+        const num1 = value1.value || ""
+        if (errorHandleInputEmail(num1,error,container,result)) {
+          return
+        }
+        if (listError) {
+          listError.innerHTML = res.outputFun(num1)
+        }  
+        result.style.display="none"
+      })
+    }
+  })
 //error handling
 function errorState(container) {
   container.classList.remove('success')
