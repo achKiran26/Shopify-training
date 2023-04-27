@@ -401,7 +401,6 @@
       </div>
     </div>
   </div>
-
   {% comment %} time,entry,name {% endcomment %}
   <div class="dom__container" id="TEN">
     <div class="dom__wrapper">
@@ -529,44 +528,43 @@
     </form>
   </div>
   {% comment %} random num and populate in table with sort {% endcomment %}
-  <div class="dom__container" id="ran">
+  <div class="dom__container" id="ranSort">
     <div class="dom__wrapper">
-      <div class="dom__inputBlock">
-        <div class="dom__header">
-          <p>This module takes two numbers and sorts the random numbers in table</p>
+      <form>
+        <div class="dom__inputBlock">
+          <div class="dom__header">
+            <p>This module takes two numbers and sorts the random numbers in table</p>
+          </div>
+          <span>
+            <label for="num1"> Number1 interger</label>
+            <input
+              class="inputResult js-value1"
+              id="num1"
+              type="number"onkeydown="return event.keyCode !== 69">
+          </span>
+          <span>
+            <label for="num2"> Number2 interger</label>
+            <input
+              class="inputResult js-value2"
+              id="num2"
+              type="number"onkeydown="return event.keyCode !== 69">
+          </span>
+          <span>
+            <input type="submit" class="inputResult js-submit" />
+          </span>
         </div>
-        <span>
-          <label for="num1"> Number1 interger</label>
-          <input
-            class="inputResult js-value1"
-            id="num1"
-            type="number"onkeydown="return event.keyCode !== 69">
-        </span>
-        <span>
-          <label for="num2"> Number2 interger</label>
-          <input
-            class="inputResult js-value2"
-            id="num2"
-            type="number"onkeydown="return event.keyCode !== 69">
-        </span>
-        <span>
-          <input class="inputResult js-submit" type="submit">
-        </span>
-
-      </div>
+      </form>
       <div class="dom__outputBlock js-op_block-ranSort">
         <span>
           <label class="js-error" for="">Result</label>
-          <h5 class="inputResult js-result" id="result"></h5>
-          <table class="table">
-            <thead>
+          <table class="js-resTable">
+          <thead>
             <tr>
-              <th>Random</th>
-              <th>Integer</th>
+              <th>random-gen-number</th>
             </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+          </thead>
+          <tbody></tbody>
+        </table>
         </span>
       </div>
     </div>

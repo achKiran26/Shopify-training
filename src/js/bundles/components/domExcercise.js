@@ -64,15 +64,14 @@ export const domExcercise = () => {
       container: 'js-op_block-ran',
       outputFun (value1, value2) {
         const blockCont =  document.querySelector('.js-op_block-ran')
-        if (value1 > value2) {
-          const error = document.querySelector('.js-error') 
-          error.innerHTML="Not valid"
-          const result = error.innerHTML
-          blockCont.classList.remove('success')
-          blockCont.classList.add('error')
-          return result
-          
-        }
+        // if (value1 > value2) {
+        //   const error = document.querySelector('.js-error') 
+        //   error.innerHTML="Not valid"
+        //   const result = error.innerHTML
+        //   blockCont.classList.remove('success')
+        //   blockCont.classList.add('error')
+        //   return result    
+        // }
         let random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
         while (random === 0) {
           random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
@@ -240,8 +239,7 @@ export const domExcercise = () => {
      {
       name: 'ranSort',
       container: 'js-op_block-ranSort',
-      outputFun( ){
-        console.log("hi")
+      outputFun(){
         return true
       }
     },
@@ -256,6 +254,16 @@ export const domExcercise = () => {
     const result = parent.querySelector(`.${globalDeclarations.finalResult}`)
     const error = parent.querySelector(`.${globalDeclarations.error}`)
     const listError = parent.querySelector(`.${globalDeclarations.listErrors}`)
+    //to add the task number
+    window.onload=()=>{
+      const domContainers = document.querySelectorAll('.dom__container')
+      domContainers.forEach((dom,i)=>{
+        const span = document.createElement('span')
+        span.textContent=`${i+1}`
+        span.classList="sideNumber"
+        dom.insertAdjacentElement('afterbegin',span)
+      })
+    }
     //for adding new i/p field dynamically
     if (`${res.name}`==="newField") {
       const addField = document.querySelector('.js-addButton')
@@ -344,11 +352,38 @@ export const domExcercise = () => {
         for (let i = 1; i <= countValue; i++) {
           const value1 = document.querySelector(`.js-value-gen-${i}`)
           const result = value1.value
-          const id = Math.floor(Math.random()*10000)+1000
+          const id = Math.floor(Math.random()*50000)+1000
           const list = document.createElement('li')
           list.innerText = `${id} - field-${i} - ${result}`
           entryList.appendChild(list)
         }
+      })
+    }
+    //random num gen and sort
+    if (`${res.name}`==="ranSort"){ 
+      //here genrate random number
+      const randomGen = (val1, val2) => {
+        return Math.floor(Math.random() * (val2 - val1 + 1)) + val1;
+      };
+      //using submit to loop
+      submit.addEventListener('click',(e)=>{
+        e.preventDefault()
+        console.log('clicked')
+        const table = document.querySelector('.js-resTable')
+        const randomNumber = randomGen(parseInt(value1.value),parseInt(value2.value))
+        const row = document.createElement("tr")
+        const dataField = document.createElement("td")
+        const finalRes = document.createTextNode(randomNumber)
+        dataField.appendChild(finalRes)
+        row.appendChild(dataField);
+        table.appendChild(row)
+        const rows = [...table.querySelectorAll("tr")]
+        rows.sort((row1, row2) => {
+          const value1 = parseInt(row1.firstChild.textContent)
+          const value2 = parseInt(row2.firstChild.textContent)
+          return value1 - value2
+        })
+        rows.forEach((row) => table.appendChild(row))
       })
     }
     //end
@@ -375,19 +410,6 @@ export const domExcercise = () => {
           row.remove()
         }
         return value1.value,value2.value
-      }
-      //ran gen sort
-      if (`${res.name}`==="ranSort") {
-        console.log("i")
-        // const table = document.querySelector('.table');
-        // const generateRandomNumber = (min, max) => {
-        //   return Math.floor(Math.random() * (max - min + 1)) + min;
-        // };
-        // const addRowToTable = (value) => {
-        //   const row = table.insertRow();
-        //   const cell = row.insertCell();
-        //   cell.textContent = value;
-        // };
       }
       //end
       
