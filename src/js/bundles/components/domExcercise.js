@@ -47,14 +47,14 @@ export const domExcercise = () => {
       container: 'js-op_block-div',
       outputFun (value1, value2) { 
         const blockCont =  document.querySelector('.js-op_block-div')
-        // if (value1.length && value2 == '') {
-        //   const error = document.querySelector('.js-error') 
-        //   error.innerHTML="Not valid"
-        //   const result = error.innerHTML
-        //   blockCont.classList.remove('success')
-        //   blockCont.classList.add('error')
-        //   return result
-        // }
+        if (value1.length && value2 == '') {
+          const error = document.querySelector('.js-error') 
+          error.innerHTML="Not valid"
+          const result = error.innerHTML
+          blockCont.classList.remove('success')
+          blockCont.classList.add('error')
+          return result
+        }
         return value1 / value2
       }
     },
@@ -63,15 +63,12 @@ export const domExcercise = () => {
       name: 'ran',
       container: 'js-op_block-ran',
       outputFun (value1, value2) {
+        if (value1 > value2) {
+          const temp = value1
+          value1 = value2
+          value2 = temp
+        }
         const blockCont =  document.querySelector('.js-op_block-ran')
-        // if (value1 > value2) {
-        //   const error = document.querySelector('.js-error') 
-        //   error.innerHTML="Not valid"
-        //   const result = error.innerHTML
-        //   blockCont.classList.remove('success')
-        //   blockCont.classList.add('error')
-        //   return result    
-        // }
         let random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
         while (random === 0) {
           random = Math.floor(Math.random() * (value2 - value1 + 1) + value1)
@@ -368,20 +365,26 @@ export const domExcercise = () => {
         return Math.floor(Math.random() * (val2 - val1 + 1)) + val1;
       }
       //using submit to loop
-      
-          submit.addEventListener('click',(e)=>{
-          e.preventDefault() 
-          if (value1.value == '' && value2.value == '') {
-            table.style.display="none"
-          }else if (value1.value == '' || value2.value == '') {
-            console.log('true')
-            const errorEmptyFields = "Please input both numbers"
-            error.innerHTML = errorEmptyFields
-            
-            table.style.display="none"
-          }
-          else{
-            table.style.display="block"
+      submit.addEventListener('click',(e)=>{
+        e.preventDefault() 
+        if (value1.value == '' && value2.value == '') {
+          const errorEmptyFields = "Both input fields cannot be empty"
+          error.innerHTML = errorEmptyFields
+          container.classList.remove('success')
+          container.classList.add('errors')
+          table.style.display="none"
+        }else if (value1.value == '' || value2.value == '') {
+          console.log('true')
+          const errorEmptyFields = "Please fill both the input fields"
+          error.innerHTML = errorEmptyFields  
+          container.classList.remove('success')
+          container.classList.add('errors')
+          table.style.display="none"
+        }
+        else{ 
+          const errorEmptyFields = "Result"
+          error.innerHTML = errorEmptyFields  
+          table.style.display="block"
           const randomNumber = randomGen(parseInt(value1.value),parseInt(value2.value))
           const row = document.createElement("tr")
           const dataField = document.createElement("td")
@@ -396,10 +399,9 @@ export const domExcercise = () => {
             return value1 - value2
           })
           rows.forEach((row) => table.appendChild(row)) 
-          }
-          
-        })
         } 
+      })
+    } 
     //end
     if (`${res.name}`!=="strCheck") {
     submit.addEventListener("click", () => {
@@ -426,28 +428,24 @@ export const domExcercise = () => {
         return value1.value,value2.value
       }
       //end
-      if (`${res.name}`!=="mul" || `${res.name}`!=="div") {
-        console.log('true')
-        if (value1 && value2) {
-          const num1 = value1.value || 0 
-          const num2 = value2.value || 0 
-          if (errorHandleInputs(num1,num2,error,container,result)) {
-            return
-          }
-          result.innerHTML = res.outputFun(num1,num2)
-        }
-      }
-      if (`${res.name}`==="mul" || `${res.name}`==="div") {
-        if (value1 && value2) {
+      if (value1 && value2) {
+        if ( typeof value1.value === 'string', typeof value1.value === 'string') {
           const num1 = value1.value 
           const num2 = value2.value 
           if (errorHandleInputs(num1,num2,error,container,result)) {
             return
           }
           result.innerHTML = res.outputFun(num1,num2)
-        }
+        }if(Number.isInteger(value1.value) && Number.isInteger(value2.value)){
+          const num1 = value1.value || 0 
+          const num2 = value2.value || 0 
+          if (errorHandleInputs(num1,num2,error,container,result)) {
+            return
+          }
+          result.innerHTML = res.outputFun(num1,num2)
+        } 
       }
-       else if (value1) {
+      else if (value1) {
         const num1 = value1.value || ""
         if (errorHandleInput(num1,error,container,result)) {
           return
@@ -491,7 +489,7 @@ function showBlock(res) {
   res.classList.remove('none')
 }
 function errorHandleInputs(num1, num2, error, container, res,row) {
-  const errorEmptyFields = "Please input both numbers"
+  const errorEmptyFields = "Please add data in both input fields"
   if (num1 == "" && num2 == "") {
     error.innerHTML = errorEmptyFields
     res.classList.remove('block')
