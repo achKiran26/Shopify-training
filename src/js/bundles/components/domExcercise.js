@@ -29,15 +29,6 @@ export const domExcercise = () => {
       name: 'mul',
       container: 'js-op_block-mul',
       outputFun (value1, value2){ 
-        const blockCont =  document.querySelector('.js-op_block-mul')
-        // if (value1.length && value2 == '') {
-        //   const error = document.querySelector('.js-error') 
-        //   error.innerHTML="Not valid"
-        //   const result = error.innerHTML
-        //   blockCont.classList.remove('success')
-        //   blockCont.classList.add('error')
-        //   return result
-        // }
         return parseInt(value1) * parseInt(value2)
       }
     },
@@ -46,15 +37,6 @@ export const domExcercise = () => {
       name: 'div',
       container: 'js-op_block-div',
       outputFun (value1, value2) { 
-        const blockCont =  document.querySelector('.js-op_block-div')
-        if (value1.length && value2 == '') {
-          const error = document.querySelector('.js-error') 
-          error.innerHTML="Not valid"
-          const result = error.innerHTML
-          blockCont.classList.remove('success')
-          blockCont.classList.add('error')
-          return result
-        }
         return value1 / value2
       }
     },
@@ -403,7 +385,7 @@ export const domExcercise = () => {
       })
     } 
     //end
-    if (`${res.name}`!=="strCheck") {
+    if (`${res.name}`!=="strCheck" || `${res.name}`!=="div" || `${res.name}`!=="mul") {
     submit.addEventListener("click", () => {
       //for name,entry and time task
       if (`${res.name}`==="TEN") {
@@ -455,8 +437,8 @@ export const domExcercise = () => {
       else{
         result.innerHTML = res.outputFun()
         successState(container)
-      }
-    })
+        }
+      })
     }
     if (`${res.name}`==="strCheck") {
       submit.addEventListener('click',()=>{
@@ -468,6 +450,16 @@ export const domExcercise = () => {
           listError.innerHTML = res.outputFun(num1)
         }  
         result.style.display="none"
+      })
+    }
+    if (`${res.name}`==="div" || `${res.name}`==="mul") { 
+      submit.addEventListener('click',()=>{
+        const num1 = value1.value
+        const num2 = value2.value 
+        if (errorHandleInputWithoutZero(num1,num2,error,container,result)) {
+          return
+        }
+          result.innerHTML = res.outputFun(num1,num2)
       })
     }
   })
@@ -539,6 +531,28 @@ function errorHandleInputEmail(num1, error, container, res) {
       hideBlock(res)
       return true
     }
+    error.innerHTML="Result"
+    showBlock(res)
+    successState(container)
+    return false
+  } 
+function errorHandleInputWithoutZero(num1,num2, error, container, res) {
+  const errorEmptyFields = "Input field cannot be empty"
+  const errorEmptyField = "Cannot show the results with one input"
+  if (num1 == "" && num2 == "") {
+    error.innerHTML = errorEmptyFields
+    res.classList.remove('block')
+    res.classList.add('none')
+    errorState(container)
+    return true
+  }
+  if (num1 == "" || num2 == "") {
+    error.innerHTML = errorEmptyField
+    res.classList.remove('block')
+    res.classList.add('none')
+    errorState(container)
+    return true
+  }
     error.innerHTML="Result"
     showBlock(res)
     successState(container)
