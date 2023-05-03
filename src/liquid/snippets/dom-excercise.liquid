@@ -569,6 +569,59 @@
       </div>
     </div>
   </div>
+  {% comment %} ajax with product fetch {% endcomment %}
+  <div class="dom__container" id="product-ajax">
+    <div class="dom__wrapper">
+      <form class="js-form-product">
+        <div class="dom__inputBlock">
+          <div class="dom__header">
+            <p>This module fetched the serached product</p>
+          </div>
+          <span>
+            <label for="num1"> Enter product name</label>
+            <input
+              class="inputResult js-value1"
+              id="num1"
+              type="text">
+          </span>
+          <span>
+            <input type="submit" class="inputResult js-submit" />
+          </span>
+        </div>
+      </form>
+      <div class="dom__outputBlock js-op_block-pAjax">
+        <span>
+          <label class="js-error" for="">Result</label>
+          <table class="js-resultTable">
+          <thead>
+            <tr>
+              <th>title</th>
+              <th>price</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% comment %} ajax cart {% endcomment %}
+  <div class="dom__container" id="cart">
+    <div class="dom__wrapper">
+      <form class="js-form-cart">
+        <div class="dom__inputBlock">
+          <div class="dom__header">
+            <p>This module shows the cart data</p>
+          </div>
+          <span>
+            <input type="submit" class="inputResult js-submit" />
+          </span>
+        </div>
+      </form>
+      <div class="dom__outputBlock js-op_block-cart">
+      </div>
+    </div>
+  </div>
 </div>
   
 

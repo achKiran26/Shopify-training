@@ -1,4 +1,5 @@
-export const domExcercise = () => {
+export const domExcercise = () => 
+{
   const globalDeclarations={
      value1: 'js-value1',
      value2: 'js-value2',
@@ -222,6 +223,22 @@ export const domExcercise = () => {
         return true
       }
     },
+     //product ajax
+     {
+      name: 'product-ajax',
+      container: 'js-op_block-pAjax',
+      outputFun () { 
+        return true
+    }
+    },
+     //cart
+     {
+      name: 'cart',
+      container: 'js-op_block-cart',
+      outputFun () { 
+        return true
+    }
+    },
   ]
   //creating looping to target each modules
   calculationFunctions.forEach(res => {
@@ -384,6 +401,85 @@ export const domExcercise = () => {
         } 
       })
     } 
+    //product search
+    if (`${res.name}`==="product-ajax"){
+      const form = document.querySelector('.js-form-product')
+      const tableBody = document.querySelector('.js-resultTable')
+
+      const getProduct = async (prd) => {  
+          const res = await fetch(`/products/${prd}.json`)
+          const data = await res.json()
+          console.log(data,'adhi')
+      }
+      const handleSubmit = async (e) => {
+        e.preventDefault()
+        const productName = value1.value
+        console.log(productName)
+
+        if (!productName) {
+          error.textContent = 'Please enter product name'
+          tableBody.innerHTML = ''
+          return;
+        }
+        error.textContent = ''
+        try {
+          const product = await getProduct(value1.value)
+          console.log(product,'prd')
+          const title= product
+          const price= product
+          tableBody.innerHTML = `
+            <tr>
+              <td>${title}</td>
+              <td>${price}</td>
+            </tr>
+          `
+        } catch (error) {
+          console.error(error)
+          error.textContent = error.message
+          tableBody.innerHTML = ''
+        }
+      };
+      form.addEventListener('submit', handleSubmit)
+    }
+    //cart
+    if (`${res.name}`==="cart"){
+      const form = document.querySelector('.js-form-cart');
+      const table = document.createElement('table');
+      const container = document.querySelector('.js-op_block-cart')
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+          const response = await fetch('/cart.json')
+          const data = await response.json()
+          console.log(data)
+          //to cleat the row
+          table.innerHTML = ''
+          if (data.length === 0) {
+            const row = table.insertRow()
+            const data = row.insertCell()
+            data.textContent = 'cart is empty'
+          } else {
+            //loop throw the array and create data row
+            Object.keys(data).forEach(item => {
+              const row = table.insertRow()
+              const image = row.insertCell()
+              const title = row.insertCell()
+              const price = row.insertCell()
+              const prodImg = document.createElement('img')
+              prodImg.src = item.image
+              prodImg.width = 20
+              image.appendChild(prodImg)
+              title.textContent = item.title
+              price.textContent = `rs${item.price}`
+            });
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      });
+      container.appendChild(table)
+    }
     //end
     if (`${res.name}`!=="strCheck" || `${res.name}`!=="div" || `${res.name}`!=="mul") {
     submit.addEventListener("click", () => {
@@ -463,68 +559,55 @@ export const domExcercise = () => {
       })
     }
   })
-//error handling
-function errorState(container) {
-  container.classList.remove('success')
-  container.classList.add('error')
-}
-function successState(container) {
-  container.classList.remove('error')
-  container.classList.add('success')
-}
-function hideBlock(res) {
-  res.classList.add('none')
-  res.classList.remove('block')
-}
-function showBlock(res) {
-  res.classList.add('block')
-  res.classList.remove('none')
-}
-function errorHandleInputs(num1, num2, error, container, res,row) {
-  const errorEmptyFields = "Please add data in both input fields"
-  if (num1 == "" && num2 == "") {
-    error.innerHTML = errorEmptyFields
-    res.classList.remove('block')
+  //error handling
+  function errorState(container) {
+    container.classList.remove('success')
+    container.classList.add('error')
+  }
+  function successState(container) {
+    container.classList.remove('error')
+    container.classList.add('success')
+  }
+  function hideBlock(res) {
     res.classList.add('none')
-    errorState(container)
-    row.remove()
-    return true
+    res.classList.remove('block')
   }
-  if (num1 == "" || num2 == "") {
-    successState(container)
+  function showBlock(res) {
+    res.classList.add('block')
+    res.classList.remove('none')
   }
-  if (num1 && num2) {
-    successState(container)
+  function errorHandleInputs(num1, num2, error, container, res,row) {
+    const errorEmptyFields = "Please add data in both input fields"
+    if (num1 == "" && num2 == "") {
+      error.innerHTML = errorEmptyFields
+      res.classList.remove('block')
+      res.classList.add('none')
+      errorState(container)
+      row.remove()
+      return true
+    }
+    if (num1 == "" || num2 == "") {
+      successState(container)
+    }
+    if (num1 && num2) {
+      successState(container)
+    }
+    if (typeof num1 === 'string' > typeof num2 === 'string') {
+      errorState(container)
+      error.innerHTML="Not valid"
+      num1.value=''
+      num2.value='' 
+    }
+    if (typeof num1 == 'string' && typeof num2 == 'string') {
+      num1=''
+      num2='' 
+    }
+    res.classList.add('block')
+    error.innerHTML = "Result"
+    return false
   }
-  if (typeof num1 === 'string' > typeof num2 === 'string') {
-    errorState(container)
-    error.innerHTML="Not valid"
-    num1.value=''
-    num2.value='' 
-  }
-  if (typeof num1 == 'string' && typeof num2 == 'string') {
-    num1=''
-    num2='' 
-  }
-  res.classList.add('block')
-  error.innerHTML = "Result"
-  return false
-}
-function errorHandleInput(num1, error, container, res) {
-  const errorEmptyField2 = "Input field cannot be empty"
-  if(num1 == ""){
-    error.textContent = errorEmptyField2
-    errorState(container)
-    hideBlock(res)
-    return true
-  }
-  error.innerHTML="Result"
-  showBlock(res)
-  successState(container)
-  return false
-}
-function errorHandleInputEmail(num1, error, container, res) {
-  const errorEmptyField2 = "Input field cannot be empty"
+  function errorHandleInput(num1, error, container, res) {
+    const errorEmptyField2 = "Input field cannot be empty"
     if(num1 == ""){
       error.textContent = errorEmptyField2
       errorState(container)
@@ -535,28 +618,41 @@ function errorHandleInputEmail(num1, error, container, res) {
     showBlock(res)
     successState(container)
     return false
+  }
+  function errorHandleInputEmail(num1, error, container, res) {
+    const errorEmptyField2 = "Input field cannot be empty"
+      if(num1 == ""){
+        error.textContent = errorEmptyField2
+        errorState(container)
+        hideBlock(res)
+        return true
+      }
+      error.innerHTML="Result"
+      showBlock(res)
+      successState(container)
+      return false
   } 
-function errorHandleInputWithoutZero(num1,num2, error, container, res) {
-  const errorEmptyFields = "Input field cannot be empty"
-  const errorEmptyField = "Cannot show the results with one input"
-  if (num1 == "" && num2 == "") {
-    error.innerHTML = errorEmptyFields
-    res.classList.remove('block')
-    res.classList.add('none')
-    errorState(container)
-    return true
-  }
-  if (num1 == "" || num2 == "") {
-    error.innerHTML = errorEmptyField
-    res.classList.remove('block')
-    res.classList.add('none')
-    errorState(container)
-    return true
-  }
-    error.innerHTML="Result"
-    showBlock(res)
-    successState(container)
-    return false
+  function errorHandleInputWithoutZero(num1,num2, error, container, res) {
+    const errorEmptyFields = "Input field cannot be empty"
+    const errorEmptyField = "Cannot show the results with one input"
+    if (num1 == "" && num2 == "") {
+      error.innerHTML = errorEmptyFields
+      res.classList.remove('block')
+      res.classList.add('none')
+      errorState(container)
+      return true
+    }
+    if (num1 == "" || num2 == "") {
+      error.innerHTML = errorEmptyField
+      res.classList.remove('block')
+      res.classList.add('none')
+      errorState(container)
+      return true
+    }
+      error.innerHTML="Result"
+      showBlock(res)
+      successState(container)
+      return false
   } 
 }
 domExcercise()
