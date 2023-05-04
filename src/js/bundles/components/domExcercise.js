@@ -373,7 +373,6 @@ export const domExcercise = () =>
           container.classList.add('errors')
           table.style.display="none"
         }else if (value1.value == '' || value2.value == '') {
-          console.log('true')
           const errorEmptyFields = "Please fill both the input fields"
           error.innerHTML = errorEmptyFields  
           container.classList.remove('success')
@@ -404,80 +403,76 @@ export const domExcercise = () =>
     //product search
     if (`${res.name}`==="product-ajax"){
       const form = document.querySelector('.js-form-product')
-      const tableBody = document.querySelector('.js-resultTable')
+      const table = document.querySelector('.js-resultTable')
 
-      const getProduct = async (prd) => {  
-          const res = await fetch(`/products/${prd}.json`)
-          const data = await res.json()
-          console.log(data,'adhi')
-      }
-      const handleSubmit = async (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault()
-        const productName = value1.value
-        console.log(productName)
-
-        if (!productName) {
-          error.textContent = 'Please enter product name'
-          tableBody.innerHTML = ''
-          return;
+        const handle = value1.value.trim()
+        if (handle === '') {
+          return
         }
-        error.textContent = ''
-        try {
-          const product = await getProduct(value1.value)
-          console.log(product,'prd')
-          const title= product
-          const price= product
-          tableBody.innerHTML = `
-            <tr>
-              <td>${title}</td>
-              <td>${price}</td>
-            </tr>
-          `
-        } catch (error) {
-          console.error(error)
-          error.textContent = error.message
-          tableBody.innerHTML = ''
-        }
-      };
-      form.addEventListener('submit', handleSubmit)
+        table.innerHTML=''
+        fetch(`/products/${handle}.json`)
+          .then(response => {
+            if (!response.ok) {
+              errorState(container)
+              error.textContent='Invalid Product'
+            }
+            return response.json()
+          })
+          .then(data => {
+            successState(container)
+            const {title,variants} = data.product
+            variants.forEach(item=>{
+              const row = table.insertRow()
+              const titleRow = row.insertCell()
+              const priceRow = row.insertCell()
+              titleRow.textContent = title
+              priceRow.textContent = `${item.price} ${item.title}`
+            })
+          })
+          .catch(error => {
+           
+            error.textContent=''
+          })
+      })
     }
     //cart
     if (`${res.name}`==="cart"){
       const form = document.querySelector('.js-form-cart');
       const table = document.createElement('table');
       const container = document.querySelector('.js-op_block-cart')
-
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        try {
-          const response = await fetch('/cart.json')
-          const data = await response.json()
-          console.log(data)
-          //to cleat the row
+        fetch('/cart.json')
+        .then(res => res.json())
+        .then(data=>{
           table.innerHTML = ''
-          if (data.length === 0) {
+          if (data.items.length === 0) {
             const row = table.insertRow()
             const data = row.insertCell()
             data.textContent = 'cart is empty'
+            errorState(container)
           } else {
             //loop throw the array and create data row
-            Object.keys(data).forEach(item => {
+            data.items.forEach(item => {
               const row = table.insertRow()
               const image = row.insertCell()
               const title = row.insertCell()
               const price = row.insertCell()
               const prodImg = document.createElement('img')
               prodImg.src = item.image
-              prodImg.width = 20
               image.appendChild(prodImg)
               title.textContent = item.title
-              price.textContent = `rs${item.price}`
+              price.textContent = `$${item.price}`
+              successState(container)
             });
           }
-        } catch (error) {
-          console.error(error)
-        }
-      });
+        })
+        .catch (error=> {
+          throw new Error(error)
+        })
+      })
       container.appendChild(table)
     }
     //end
