@@ -3,7 +3,7 @@ export const domExcercise = () => {
     value1: "js-value1",
     value2: "js-value2",
     error: "js-error",
-    sumit: "js-submit",
+    submit: "js-submit",
     finalResult: "js-result",
     listErrors: "js-result-strCheckerror",
   };
@@ -50,10 +50,12 @@ export const domExcercise = () => {
           value1 = value2;
           value2 = temp;
         }
-        const blockCont = document.querySelector(".js-op_block-ran");
-        let random = Math.floor(Math.random() * (value2 - value1 + 1) + value1);
-        while (random === 0) {
+        let random
+        for(;;){
           random = Math.floor(Math.random() * (value2 - value1 + 1) + value1);
+          if(random !== 0){
+            break
+          }
         }
         return random;
       },
@@ -82,8 +84,6 @@ export const domExcercise = () => {
         if (value1.includes(value2)) {
           return true;
         } else {
-          // container.classList.remove("success")
-          // container.classList.add("error")
           return false;
         }
       },
@@ -233,7 +233,39 @@ export const domExcercise = () => {
       name: "product-ajax",
       container: "js-op_block-pAjax",
       outputFun() {
-        return true;
+        const form = document.querySelector(".js-form-product");
+      const table = document.querySelector(".js-resultTable");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const handle = value1.value.trim();
+        if (handle === "") {
+          return;
+        }
+        table.innerHTML = "";
+        fetch(`/products/${handle}.json`)
+          .then((response) => {
+            if (!response.ok) {
+              errorState(container);
+              error.textContent = "Invalid Product";
+            }
+            return response.json();
+          })
+          .then((data) => {
+            successState(container);
+            const { title, variants } = data.product;
+            variants.forEach((item) => {
+              const row = table.insertRow();
+              const titleRow = row.insertCell();
+              const priceRow = row.insertCell();
+              titleRow.textContent = title;
+              priceRow.textContent = `${item.price} ${item.title}`;
+            });
+          })
+          .catch((error) => {
+            error.textContent = "";
+          });
+      });
       },
     },
     //cart
@@ -241,30 +273,84 @@ export const domExcercise = () => {
       name: "cart",
       container: "js-op_block-cart",
       outputFun() {
-        return true;
+        const form = document.querySelector(".js-form-cart");
+      const table = document.createElement("table");
+      const container = document.querySelector(".js-op_block-cart");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        fetch("/cart.json")
+          .then((res) => res.json())
+          .then((data) => {
+            table.innerHTML = "";
+            if (data.items.length === 0) {
+              const row = table.insertRow();
+              const data = row.insertCell();
+              data.textContent = "cart is empty";
+              errorState(container);
+            } else {
+              //loop throw the array and create data row
+              data.items.forEach((item) => {
+                const row = table.insertRow();
+                const image = row.insertCell();
+                const title = row.insertCell();
+                const price = row.insertCell();
+                const prodImg = document.createElement("img");
+                prodImg.src = item.image;
+                image.appendChild(prodImg);
+                title.textContent = item.title;
+                price.textContent = `$${item.price}`;
+                successState(container);
+              });
+            }
+          })
+          .catch((error) => {
+            throw new Error(error);
+          });
+      });
+      container.appendChild(table);
       },
     },
   ];
+  //search
+  const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    // Call search function here
+    search(event.target.value);
+  }
+});
+
+function search(keyword) {
+  // Get all the elements you want to search through
+  
+
+  // Filter the elements based on the keyword
+  
+
+  // Do something with the matching elements, such as displaying them on the page
+  // For example:
+  
+}
+
+  //to add the task number
+  const domContainers = document.querySelectorAll(".dom__container");
+  domContainers.forEach((dom, i) => {
+    const span = document.createElement("span");
+    span.textContent = `${i + 1}`;
+    span.classList = "sideNumber";
+    dom.insertAdjacentElement("afterbegin", span);
+  });
   //creating looping to target each modules
   calculationFunctions.forEach((res) => {
     const container = document.querySelector(`.${res.container}`);
-    const parent = document.getElementById(`${res.name}`);
-    const submit = parent.querySelector(`.${globalDeclarations.sumit}`);
+    const parent = document.getElementById(res.name);
+    
+    const submit = parent.querySelector(`.${globalDeclarations.submit}`);
     const value1 = parent.querySelector(`.${globalDeclarations.value1}`);
     const value2 = parent.querySelector(`.${globalDeclarations.value2}`);
     const result = parent.querySelector(`.${globalDeclarations.finalResult}`);
     const error = parent.querySelector(`.${globalDeclarations.error}`);
-    const listError = parent.querySelector(`.${globalDeclarations.listErrors}`);
-    //to add the task number
-    window.onload = () => {
-      const domContainers = document.querySelectorAll(".dom__container");
-      domContainers.forEach((dom, i) => {
-        const span = document.createElement("span");
-        span.textContent = `${i + 1}`;
-        span.classList = "sideNumber";
-        dom.insertAdjacentElement("afterbegin", span);
-      });
-    };
+    const listError = parent.querySelector(`.${globalDeclarations.listErrors}`);   
     //for adding new i/p field dynamically
     if (`${res.name}` === "newField") {
       const addField = document.querySelector(".js-addButton");
@@ -414,79 +500,9 @@ export const domExcercise = () => {
       });
     }
     //product search
-    if (`${res.name}` === "product-ajax") {
-      const form = document.querySelector(".js-form-product");
-      const table = document.querySelector(".js-resultTable");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const handle = value1.value.trim();
-        if (handle === "") {
-          return;
-        }
-        table.innerHTML = "";
-        fetch(`/products/${handle}.json`)
-          .then((response) => {
-            if (!response.ok) {
-              errorState(container);
-              error.textContent = "Invalid Product";
-            }
-            return response.json();
-          })
-          .then((data) => {
-            successState(container);
-            const { title, variants } = data.product;
-            variants.forEach((item) => {
-              const row = table.insertRow();
-              const titleRow = row.insertCell();
-              const priceRow = row.insertCell();
-              titleRow.textContent = title;
-              priceRow.textContent = `${item.price} ${item.title}`;
-            });
-          })
-          .catch((error) => {
-            error.textContent = "";
-          });
-      });
-    }
-    //cart
-    if (`${res.name}` === "cart") {
-      const form = document.querySelector(".js-form-cart");
-      const table = document.createElement("table");
-      const container = document.querySelector(".js-op_block-cart");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        fetch("/cart.json")
-          .then((res) => res.json())
-          .then((data) => {
-            table.innerHTML = "";
-            if (data.items.length === 0) {
-              const row = table.insertRow();
-              const data = row.insertCell();
-              data.textContent = "cart is empty";
-              errorState(container);
-            } else {
-              //loop throw the array and create data row
-              data.items.forEach((item) => {
-                const row = table.insertRow();
-                const image = row.insertCell();
-                const title = row.insertCell();
-                const price = row.insertCell();
-                const prodImg = document.createElement("img");
-                prodImg.src = item.image;
-                image.appendChild(prodImg);
-                title.textContent = item.title;
-                price.textContent = `$${item.price}`;
-                successState(container);
-              });
-            }
-          })
-          .catch((error) => {
-            throw new Error(error);
-          });
-      });
-      container.appendChild(table);
-    }
+    // if (`${res.name}` === "product-ajax") {
+      
+    // }
     //end
     if (
       `${res.name}` !== "strCheck" ||
@@ -550,6 +566,43 @@ export const domExcercise = () => {
           successState(container);
         }
       });
+      function fetchCartData(){
+        const form = document.querySelector(".js-form-cart");
+      const table = document.createElement("table");
+      const container = document.querySelector(".js-op_block-cart");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        fetch("/cart.json")
+          .then((res) => res.json())
+          .then((data) => {
+            table.innerHTML = "";
+            if (data.items.length === 0) {
+              const row = table.insertRow();
+              const data = row.insertCell();
+              data.textContent = "cart is empty";
+              errorState(container);
+            } else {
+              //loop throw the array and create data row
+              data.items.forEach((item) => {
+                const row = table.insertRow();
+                const image = row.insertCell();
+                const title = row.insertCell();
+                const price = row.insertCell();
+                const prodImg = document.createElement("img");
+                prodImg.src = item.image;
+                image.appendChild(prodImg);
+                title.textContent = item.title;
+                price.textContent = `$${item.price}`;
+                successState(container);
+              });
+            }
+          })
+          .catch((error) => {
+            throw new Error(error);
+          });
+      });
+      container.appendChild(table);
+      }
     }
     if (`${res.name}` === "strCheck") {
       submit.addEventListener("click", () => {
